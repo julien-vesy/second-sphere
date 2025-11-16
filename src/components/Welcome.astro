@@ -1,10 +1,37 @@
 ---
 import astroLogo from '../assets/astro.svg';
 import background from '../assets/background.svg';
+import fixMyCard from '../assets/fix-my-card.jpg';
+import { createClient } from '@supabase/supabase-js';
+
+const supabase = createClient(
+	import.meta.env.PUBLIC_SUPABASE_URL,
+	import.meta.env.PUBLIC_SUPABASE_ANON_KEY
+);
+
+
+console.log("URL:", import.meta.env.PUBLIC_SUPABASE_URL);
+
+// Exemple : récupérer une image base64 stockée dans une colonne "data"
+const { data, error } = await supabase
+	.from('image')
+	.select('*')
+	.limit(1)
+
+
+console.log("data:", data);
+console.log("error:", error);
+if (error) {
+	console.error('Erreur Supabase:', error);
+}
+---
 ---
 
 <div id="container">
 	<img id="background" src={background.src} alt="" fetchpriority="high" />
+	<h1>Fix My Card</h1>
+	<img id="fixMyCard" src={fixMyCard.src} alt="" fetchpriority="high"/>
+	<img id="data" src={data![0]?.src} alt="" fetchpriority="high"/>
 	<main>
 		<section id="hero">
 			<a href="https://astro.build"
