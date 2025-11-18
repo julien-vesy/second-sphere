@@ -1,5 +1,28 @@
 ---
 import fixMyCard from '../assets/fix-my-card.jpg'
+
+const headers = [
+  {
+    ref: '/',
+    name: 'Accueil',
+  },
+  {
+    ref: '/',
+    name: 'Mes prestations',
+  },
+  {
+    ref: '/mes-realisations',
+    name: 'Mes réalisations',
+  },
+  {
+    ref: '/devis',
+    name: 'Demander un devis',
+  },
+  {
+    ref: '/',
+    name: 'À propos',
+  },
+]
 ---
 
 <header class="flex w-full h-20 bg-white shadow-md fixed top-0 left-0 z-50">
@@ -19,34 +42,16 @@ import fixMyCard from '../assets/fix-my-card.jpg'
 
     <!-- Navigation Buttons -->
     <nav class="flex items-center gap-6">
-      <button
-        onclick="location.href='/'"
-        class="px-4 py-2 text-gray-700 hover:text-indigo-600 transition-colors font-medium"
-      >
-        Accueil
-      </button>
-      <button
-        class="px-4 py-2 text-gray-700 hover:text-indigo-600 transition-colors font-medium"
-      >
-        Mes prestations
-      </button>
-      <button
-        onclick="location.href='/mes-realisations'"
-        class="px-4 py-2 text-gray-700 hover:text-indigo-600 transition-colors font-medium"
-      >
-        Mes réalisations
-      </button>
-      <button
-        onclick="location.href='/devis'"
-        class="px-4 py-2 text-gray-700 hover:text-indigo-600 transition-colors font-medium"
-      >
-        Demander un devis
-      </button>
-      <button
-        class="px-4 py-2 text-gray-700 hover:text-indigo-600 transition-colors font-medium"
-      >
-        À propos
-      </button>
+      {
+        headers.map((item) => (
+          <button
+            onclick={`location.href='${item.ref}'`}
+            class="px-4 py-2 text-gray-700 hover:text-indigo-600 transition-colors font-medium"
+          >
+            {item.name}
+          </button>
+        ))
+      }
     </nav>
   </div>
 </header>
