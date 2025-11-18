@@ -7,9 +7,9 @@ import Formulaire from './images-container'
   <p>Je vous ferais parvenir un devis des les plus bref délai</p>
 
   <form
+    id="devis-form"
     name="contact"
     method="POST"
-    data-netlify="true"
     enctype="multipart/form-data"
     class="space-y-6"
   >
@@ -48,15 +48,7 @@ import Formulaire from './images-container'
       ></textarea>
     </div>
 
-    <div >
-      <input type="file" name="image_0" accept="image/*" />
-      <input type="file" name="image_1" accept="image/*" />
-      <input type="file" name="image_2" accept="image/*" />
-      <input type="file" name="image_3" accept="image/*" />
-      <input type="file" name="image_4" accept="image/*" />
-    </div>
-
-    <input type="hidden" name="redirect" value="/merci" />
+    <Formulaire client:load />
 
     <button
       type="submit"
@@ -65,4 +57,19 @@ import Formulaire from './images-container'
       Envoyer
     </button>
   </form>
+  <script>
+    document.getElementById("devis-form")!.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(e?.target);
+
+      const res = await fetch("/.netlify/functions/sendMail", {
+        method: "POST",
+        body: formData
+      });
+
+      const data = await res.json();
+      console.log("Serveur :", data);
+    });
+  </script>
 </div>
