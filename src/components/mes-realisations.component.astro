@@ -1,0 +1,109 @@
+---
+
+const projects = [
+  {
+    title: 'Flagadoss - Neo Genesis',
+    service: 'Restauration complète',
+    image:
+      'https://kqedvhcdsrldkhpavxgx.supabase.co/storage/v1/object/public/storagetestnet/flagadoss.jpeg',
+    description: 'Nettoyage, défroissage et réparation des bords',
+    before: 'État: Usé, plis visibles, coins abîmés',
+    after: 'État: Comme neuf, surface plane, couleurs vives',
+  },
+  {
+    title: 'Rayquaza - EX : Deoxys',
+    service: 'Défroissage expert',
+    image: 'https://kqedvhcdsrldkhpavxgx.supabase.co/storage/v1/object/public/storagetestnet/rayquaza.jpeg',
+    description: 'Aplatissement et élimination des plis',
+    before: 'État: Plusieurs plis marqués',
+    after: 'État: Surface parfaitement plane',
+  },
+  {
+    title: 'Dracaufeu Radieux - Zénith Suprême',
+    service: 'Réparation des bords',
+    image:
+      'https://kqedvhcdsrldkhpavxgx.supabase.co/storage/v1/object/public/storagetestnet/drac.jpeg',
+    description: 'Réparation minutieuse des coins et bordures',
+    before: 'État: Coins très abîmés, bordures effilochées - PSA 7',
+    after: 'État: Coins restaurés, finition invisible -PSA 10',
+  },
+  {
+    title: 'Pikachu Promo - 2001',
+    service: 'Nettoyage et protection',
+    image:
+      'https://kqedvhcdsrldkhpavxgx.supabase.co/storage/v1/object/public/storagetestnet/alakazam.jpeg',
+    description: 'Nettoyage professionnel et encapsulation',
+    before: 'État: Traces de manipulation, légèrement sale',
+    after: 'État: Impeccable, protégée sous grade',
+  },
+  {
+    title: 'Collection Base Set - 1999',
+    service: 'Restauration de couleurs',
+    image:
+      'https://kqedvhcdsrldkhpavxgx.supabase.co/storage/v1/object/public/storagetestnet/tortank.jpeg',
+    description: 'Ravivage des couleurs et nettoyage',
+    before: 'État: Couleurs ternes, aspect vieilli',
+    after: 'État: Couleurs éclatantes, aspect rajeuni',
+  },
+
+  {
+    title: 'Léviator Shiny - Set Tempête',
+    service: 'Restauration complète',
+    image:
+      'https://kqedvhcdsrldkhpavxgx.supabase.co/storage/v1/object/public/storagetestnet/dracolo.jpeg',
+    description: 'Service complet: nettoyage, réparation, protection',
+    before: 'État: Très abîmé, multiple dommages',
+    after: 'État: Restauration exceptionnelle',
+  },
+]
+
+---
+
+<div class="py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <h1 class="text-5xl mb-4 text-gray-900">Mes réalisations</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Découvrez quelques-unes de nos restaurations les plus réussies
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+      {
+        projects.map((project, index) => (
+          <div
+            data-slot="card"
+            class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border overflow-hidden hover:shadow-xl transition-shadow"
+          >
+            <div class="relative h-64 overflow-hidden">
+              <img
+                src={project.image}
+                alt={project.title}
+                class="w-full h-full object-cover"
+              />
+              <div class="absolute top-4 right-4">
+                <span class="inline-flex items-center justify-center rounded-md px-2 py-0.5 text-white bg-blue-600">
+                  {project.service}
+                </span>
+              </div>
+            </div>
+            <div data-slot="card-content" class="px-6 [&:last-child]:pb-6 pt-4">
+              <h3 class="text-xl mb-2">{project.title}</h3>
+              <p class="text-gray-600 mb-4">{project.description}</p>
+              <div class="space-y-2 text-sm">
+                <div class="flex items-start">
+                  <span class="text-red-600 mr-2">Avant:</span>
+                  <span class="text-gray-700">{project.before}</span>
+                </div>
+                <div class="flex items-start">
+                  <span class="text-green-600 mr-2">Après:</span>
+                  <span class="text-gray-700">{project.after}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</div>
