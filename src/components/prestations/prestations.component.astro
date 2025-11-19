@@ -58,14 +58,18 @@ const services = [
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+    <div
+      class="grid gap-8 mb-12 [grid-template-columns:repeat(auto-fit,minmax(350px,1fr))]"
+    >
       {
         services.map((service) => (
           <div
             data-slot="card"
             class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border hover:shadow-xl transition-shadow"
           >
-            <div class="flex flex-col max-h-40 min-h-40 @container/card-header  auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 pt-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6">
+            <div
+              class="flex flex-col gap-1.5 h-[140px] px-6 pt-6 "
+            >
               <div class="mb-4">
                 <service.icon class="w-10 h-10 text-blue-600" />
               </div>
@@ -100,16 +104,17 @@ const services = [
           </div>
         ))
       }
-      <div class="text-sm">
-        <i>
-          *Les tarifs restent indicatif et soumis à l'évaluation d'un devis.
-        </i>
-        <i>
-          **Fix My Card ne prend pas en charge les frais de transport ou encore
-          l'assurance de transport.
-        </i>
-        <a class="underline" href="/">Voir cgv.</a>
-      </div>
+    </div>
+    <div class="text-sm mb-4">
+      <i>
+        *Les tarifs restent indicatif et soumis à l'évaluation d'un devis.
+      </i>
+      <br />
+      <i>
+        **Fix My Card ne prend pas en charge les frais de transport ou encore
+        l'assurance de transport.
+      </i>
+      <a class="underline" href="/">Voir cgv.</a>
     </div>
     <div
       class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-8 mb-12"
