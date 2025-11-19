@@ -1,0 +1,204 @@
+---
+import refresh from '../../assets/refresh.svg'
+
+const services = [
+  {
+    icon: refresh,
+    title: 'Nettoyage professionnel',
+    description:
+      'Élimination des saletés, traces de doigts et résidus de surface',
+    price: 'À partir de 15€',
+    features: [
+      'Nettoyage en profondeur',
+      'Produits spécialisés non-abrasifs',
+      'Séchage contrôlé',
+      'Protection anti-poussière',
+    ],
+  },
+  {
+    icon: refresh,
+    title: 'Défroissage et aplatissement',
+    description:
+      'Correction des plis et déformations pour retrouver une surface plane',
+    price: 'À partir de 25€',
+    features: [
+      'Traitement des plis légers à modérés',
+      'Aplatissement progressif',
+      'Technique sans risque',
+      'Résultats durables',
+    ],
+  },
+  {
+    icon: refresh,
+    title: 'Réparation des bords',
+    description: 'Restauration des coins et bordures abîmés',
+    price: 'À partir de 35€',
+    features: [
+      'Réparation des coins cornés',
+      'Traitement des bords effilochés',
+      'Reconstitution des zones endommagées',
+      'Finition imperceptible',
+    ],
+  },
+  {
+    icon: refresh,
+    title: 'Restauration de couleurs',
+    description: 'Ravivage des couleurs ternies et fanées',
+    price: 'À partir de 45€',
+    features: [
+      'Correction des décolorations',
+      'Ravivage des couleurs',
+      "Respect de l'original",
+      'Pigments professionnels',
+    ],
+  },
+  {
+    icon: refresh,
+    title: 'Protection et encapsulation',
+    description: 'Mise sous protection pour une conservation optimale',
+    price: 'À partir de 20€',
+    features: [
+      'Sleeve de protection premium',
+      'Top loader rigide',
+      'Option encapsulation professionnelle',
+      'Étiquetage et documentation',
+    ],
+  },
+  {
+    icon: refresh,
+    title: 'Restauration complète',
+    description: 'Service tout-en-un pour une restauration totale',
+    price: 'Sur devis',
+    features: [
+      'Analyse approfondie',
+      'Tous traitements nécessaires',
+      'Rapport détaillé',
+      'Garantie satisfaction',
+    ],
+  },
+]
+---
+
+<div class="py-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Header */}
+    <div class="text-center mb-12">
+      <h1 class="text-5xl mb-4 text-gray-900">Mes prestations</h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Des services professionnels adaptés à tous vos besoins de restauration
+        de cartes Pokémon
+      </p>
+    </div>
+
+    {/* Services Grid */}
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+      {
+        services.map((service, index) => (
+          <div
+            data-slot="card"
+            class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border hover:shadow-xl transition-shadow"
+          >
+            <div
+              data-slot="card-header"
+              class="@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 pt-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6"
+            >
+              <div class="mb-4">
+                <refresh
+                  src={service.icon.src}
+                  alt="refresh"
+                  class="w-10 h-10 text-blue-600"
+                />
+              </div>
+              <h4 data-slot="card-title" class="leading-none">
+                {service.title}
+              </h4>
+              <p data-slot="card-description" class="text-muted-foreground">
+                {service.description}
+              </p>
+            </div>
+            <div data-slot="card-content" class="px-6 [&:last-child]:pb-6">
+              <div class="mb-4">
+                <span class="text-2xl text-blue-600">{service.price}</span>
+              </div>
+              <ul class="space-y-2">
+                {service.features.map((feature) => (
+                  <li class="flex items-start">
+                    <span class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
+                    <span class="text-gray-700">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    {/* Process Section */}
+    <div
+      class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-lg p-8 mb-12"
+    >
+      <h2 class="text-3xl mb-8 text-center text-gray-900">
+        Le processus de restauration
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="text-center">
+          <div
+            class="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl"
+          >
+            1
+          </div>
+          <h3 class="text-xl mb-2">Diagnostic</h3>
+          <p class="text-gray-700">
+            Analyse détaillée de l'état de votre carte
+          </p>
+        </div>
+        <div class="text-center">
+          <div
+            class="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl"
+          >
+            2
+          </div>
+          <h3 class="text-xl mb-2">Devis</h3>
+          <p class="text-gray-700">Proposition personnalisée et transparente</p>
+        </div>
+        <div class="text-center">
+          <div
+            class="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl"
+          >
+            3
+          </div>
+          <h3 class="text-xl mb-2">Restauration</h3>
+          <p class="text-gray-700">
+            Intervention experte avec techniques professionnelles
+          </p>
+        </div>
+        <div class="text-center">
+          <div
+            class="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl"
+          >
+            4
+          </div>
+          <h3 class="text-xl mb-2">Retour</h3>
+          <p class="text-gray-700">
+            Carte restaurée et protégée, livrée avec soin
+          </p>
+        </div>
+      </div>
+    </div>
+
+    {/* CTA */}
+    <div class="text-center">
+      <h2 class="text-3xl mb-4 text-gray-900">Intéressé par nos services ?</h2>
+      <p class="text-xl text-gray-600 mb-6">
+        Demandez un devis gratuit et personnalisé dès maintenant
+      </p>
+      <button
+        onclick={`location.href='devis'`}
+        class="bg-primary text-primary-foreground hover:bg-primary/90 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-blue-600 hover:bg-blue-700"
+      >
+        Demander un devis gratuit
+      </button>
+    </div>
+  </div>
+</div>
