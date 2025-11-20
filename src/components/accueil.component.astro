@@ -1,10 +1,7 @@
 ---
-import MotionWrapper from './motion-wrapper'
 import Droplet from '../assets/droplet.svg'
-import Refresh from '../assets/refresh.svg'
 import Scissor from '../assets/scissor.svg'
 import CheckCircle from '../assets/circle-check.svg'
-import CircleX from '../assets/circle-x.svg'
 import Sparkles from '../assets/sparkles.svg'
 import Heart from '../assets/heart.svg'
 import Lightbulb from '../assets/lightbulb.svg'
@@ -84,9 +81,7 @@ const techniques = [
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10">
-      <MotionWrapper
-        client:load
-        client:load
+      <div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
@@ -120,7 +115,7 @@ const techniques = [
             Découvrir nos réalisations
           </button>
         </div>
-      </MotionWrapper>
+      </div>
     </div>
   </section>
 
@@ -138,8 +133,7 @@ const techniques = [
     </div>
 
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <MotionWrapper
-        client:load
+      <div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -221,7 +215,7 @@ const techniques = [
             </ul>
           </div>
         </div>
-      </MotionWrapper>
+      </div>
     </div>
   </section>
 
@@ -241,8 +235,7 @@ const techniques = [
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <MotionWrapper
-        client:load
+      <div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -253,13 +246,12 @@ const techniques = [
         <p class="text-xl text-indigo-200 max-w-3xl mx-auto">
           Ce qui guide chaque geste, chaque décision, chaque restauration
         </p>
-      </MotionWrapper>
+      </div>
 
       <div class="grid md:grid-cols-3 gap-8">
         {
           values.map((value, index) => (
-            <MotionWrapper
-              client:load
+            <div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -282,7 +274,7 @@ const techniques = [
                   </p>
                 </div>
               </div>
-            </MotionWrapper>
+            </div>
           ))
         }
       </div>
@@ -305,8 +297,7 @@ const techniques = [
     </div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <MotionWrapper
-        client:load
+      <div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -321,13 +312,12 @@ const techniques = [
         <p class="text-xl text-gray-700 max-w-3xl mx-auto">
           Des techniques professionnelles pour un résultat exceptionnel
         </p>
-      </MotionWrapper>
+      </div>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {
           techniques.map((technique, index) => (
-            <MotionWrapper
-              client:load
+            <div
               key={index}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -354,13 +344,12 @@ const techniques = [
                   </p>
                 </div>
               </div>
-            </MotionWrapper>
+            </div>
           ))
         }
       </div>
 
-      <MotionWrapper
-        client:load
+      <div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -373,7 +362,7 @@ const techniques = [
         >
           Découvrir toutes nos prestations
         </button>
-      </MotionWrapper>
+      </div>
     </div>
   </section>
 
@@ -382,8 +371,7 @@ const techniques = [
     class="relative py-24 bg-gradient-to-br from-amber-50 to-orange-50 overflow-hidden"
   >
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <MotionWrapper
-        client:load
+      <div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -413,7 +401,7 @@ const techniques = [
             une nouvelle vie qui commence.
           </p>
         </div>
-      </MotionWrapper>
+      </div>
     </div>
   </section>
 
@@ -421,8 +409,7 @@ const techniques = [
   <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-        <MotionWrapper
-          client:load
+        <div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -435,9 +422,8 @@ const techniques = [
             500+
           </div>
           <p class="text-xl text-gray-700">Cartes restaurées avec amour</p>
-        </MotionWrapper>
-        <MotionWrapper
-          client:load
+        </div>
+        <div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -450,9 +436,8 @@ const techniques = [
             98%
           </div>
           <p class="text-xl text-gray-700">Collectionneurs satisfaits</p>
-        </MotionWrapper>
-        <MotionWrapper
-          client:load
+        </div>
+        <div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -465,7 +450,7 @@ const techniques = [
             5+
           </div>
           <p class="text-xl text-gray-700">Années de passion et d'expertise</p>
-        </MotionWrapper>
+        </div>
       </div>
     </div>
   </section>
@@ -488,8 +473,7 @@ const techniques = [
     <div
       class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10"
     >
-      <MotionWrapper
-        client:load
+      <div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -516,7 +500,7 @@ const techniques = [
             En savoir plus sur nous
           </button>
         </div>
-      </MotionWrapper>
+      </div>
     </div>
   </section>
 </div>
