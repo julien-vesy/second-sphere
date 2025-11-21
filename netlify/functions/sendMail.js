@@ -17,7 +17,6 @@ export const handler = async (event) => {
   const fields = {}
   const files = []
 
-  // Busboy parsing
   return new Promise((resolve, reject) => {
     busboy.on('field', (fieldname, value) => {
       fields[fieldname] = value
@@ -29,9 +28,7 @@ export const handler = async (event) => {
       file.on('end', () => {
         const safeFilename = filename || 'unnamed_file'
         const safeMimeType =
-          mimetype ||
-          mimeLookup(safeFilename) ||
-          'application/octet-stream'
+          mimetype || mimeLookup(safeFilename) || 'application/octet-stream'
 
         files.push({
           filename: String(safeFilename),

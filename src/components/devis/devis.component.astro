@@ -48,7 +48,7 @@ import Formulaire from './images-container'
       ></textarea>
     </div>
 
-    <Formulaire client:load />
+    <Formulaire client:visible />
 
     <button
       type="submit"
@@ -58,18 +58,20 @@ import Formulaire from './images-container'
     </button>
   </form>
   <script>
-    document.getElementById("devis-form")!.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    document
+      .getElementById('devis-form')!
+      .addEventListener('submit', async (e) => {
+        e.preventDefault()
 
-      const formData = new FormData(e?.target);
+        const formData = new FormData(e?.target)
 
-      const res = await fetch("/.netlify/functions/sendMail", {
-        method: "POST",
-        body: formData
-      });
+        const res = await fetch('/.netlify/functions/sendMail', {
+          method: 'POST',
+          body: formData,
+        })
 
-      const data = await res.json();
-      console.log("Serveur :", data);
-    });
+        const data = await res.json()
+        console.log('Serveur :', data)
+      })
   </script>
 </div>

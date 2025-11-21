@@ -1,5 +1,7 @@
 ---
 import Header from '../components/header.component.astro'
+import Footer from '../components/footer.component.astro'
+import { ClientRouter } from 'astro:transitions'
 ---
 
 <!doctype html>
@@ -10,11 +12,13 @@ import Header from '../components/header.component.astro'
     <link rel="icon" type="image/svg+xml" href="/favicon.png" />
     <meta name="generator" content={Astro.generator} />
     <title>Fix my card</title>
+    <ClientRouter />
   </head>
   <body class="m-0 w-full h-full overflow-hidden">
     <Header />
-    <div class="mt-20 overflow-y-auto h-[calc(100%-80px)]">
+    <div class="overflow-y-auto h-[calc(100%-64px)]">
       <slot />
+      <Footer />
     </div>
   </body>
 </html>
