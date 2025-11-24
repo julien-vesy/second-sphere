@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets'
+import FixMyCard from '../assets/illustrations/fix-my-card.jpg'
+
 const navItems = [
   { id: 'accueil', label: 'Accueil', href: '/' },
   { id: 'prestations', label: 'Mes prestations', href: '/prestations' },
@@ -12,13 +15,15 @@ const navItems = [
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
       <a href="/" class="flex items-center space-x-2">
-        <img
+        <Image
           id="fixMyCard"
-          src="https://kqedvhcdsrldkhpavxgx.supabase.co/storage/v1/object/public/storagetestnet/fix-my-card.jpg"
-          alt="Logo"
+          src={FixMyCard}
+          alt="FixMycard"
           fetchpriority="high"
-          width="48"
-          height="48"
+          quality={80}
+          width={48}
+          height={48}
+          format="webp"
           class="h-12 w-auto"
         />
         <span class="text-xl text-blue-600">Fix My Card</span>
