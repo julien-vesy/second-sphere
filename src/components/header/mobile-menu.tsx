@@ -1,6 +1,14 @@
-import { createSignal, Show } from 'solid-js'
+import { type Component, createSignal, Show } from 'solid-js'
 
-export default function MobileMenu(props) {
+interface NavItem {
+  id: string
+  label: string
+  href: string
+}
+
+const MobileMenu: Component<{
+  navItems: NavItem[]
+}> = (props) => {
   const [isOpen, setIsOpen] = createSignal(false)
 
   const toggleMenu = () => {
@@ -15,19 +23,21 @@ export default function MobileMenu(props) {
     <>
       <button onClick={toggleMenu} class="md:hidden" aria-label="Toggle menu">
         <Show when={!isOpen()}>
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none">
             <path
               stroke="currentColor"
               stroke-width="2"
+              stroke-linecap="round"
               d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
         </Show>
         <Show when={isOpen()}>
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none">
             <path
               stroke="currentColor"
               stroke-width="2"
+              stroke-linecap="round"
               d="M6 6l12 12M6 18L18 6"
             />
           </svg>
@@ -50,3 +60,5 @@ export default function MobileMenu(props) {
     </>
   )
 }
+
+export default MobileMenu
