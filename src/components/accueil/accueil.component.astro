@@ -8,8 +8,6 @@ import Lightbulb from '../../assets/icons/lightbulb.svg'
 import Users from '../../assets/icons/users.svg'
 import Eye from '../../assets/icons/eye.svg'
 import OrderCheck from './order-check.jsx'
-import RayquazaCarte from '../../assets/illustrations/rayquaza-carte.webp'
-import DracolosseCarte from '../../assets/illustrations/dracolosse-carte.webp'
 import FixMyCard from '../../assets/illustrations/fix-my-card.png'
 import { Image } from 'astro:assets'
 
@@ -66,46 +64,16 @@ const techniques = [
 
 <div class="overflow-hidden">
   <section
-    class="relative min-h-screen flex items-center justify-center overflow-hidden"
+    style="min-height: calc(100vh - 64px);"
+    class="relative flex items-center justify-center overflow-hidden"
   >
-    <div
-      class="absolute top-20 left-0 w-[600px] h-[600px] opacity-4 pointer-events-none"
-    >
-      <Image
-        id="RayquazaCarte"
-        src={RayquazaCarte}
-        alt="RayquazaCarte"
-        fetchpriority="high"
-        quality={80}
-        width={600}
-        height={600}
-        format="webp"
-        class="w-full h-full object-contain"
-      />
-    </div>
-    <div
-      class="absolute top-20 right-0 w-[600px] h-[600px] opacity-4 pointer-events-none"
-    >
-      <Image
-        id="DracolosseCarte"
-        src={DracolosseCarte}
-        alt="DracolosseCarte"
-        fetchpriority="high"
-        quality={80}
-        width={600}
-        height={600}
-        format="webp"
-        class="w-full h-full object-contain"
-      />
-    </div>
-
     <div
       class="absolute inset-0 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 -z-10"
     >
     </div>
 
     <div
-      class="mt-8 bg-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 bg-card text-card-foreground flex flex-col gap-6 rounded-xl border hover:shadow-xl transition-shadow"
+      class="bg-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 bg-card text-card-foreground flex flex-col gap-6 rounded-xl border hover:shadow-xl transition-shadow"
     >
       <div class="text-center">
         <div class="inline-block mb-6">
@@ -140,7 +108,7 @@ const techniques = [
             onclick="location.href='prestations'"
             class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-background hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-10 rounded-md px-6 has-[>svg]:px-4 border-2 border-purple-600 text-purple-600 hover:bg-purple-50"
           >
-            Découvrir nos réalisations
+            Nos prestations
           </button>
         </div>
       </div>
