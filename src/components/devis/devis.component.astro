@@ -1,5 +1,6 @@
 ---
 import Formulaire from './images-container'
+import FormSubmitHandler from './formSubmitHandler.tsx'
 ---
 
 <div class="container mx-auto px-4 py-8 pt-28">
@@ -61,28 +62,6 @@ import Formulaire from './images-container'
 
     <Formulaire client:visible />
 
-    <button
-      type="submit"
-      class="bg-blue-500 hover:bg-blue-600 text-white font-medium px-8 py-3 rounded-md transition-colors"
-    >
-      Envoyer
-    </button>
+    <FormSubmitHandler client:load />
   </form>
-  <script>
-    document
-      .getElementById('devis-form')!
-      .addEventListener('submit', async (e) => {
-        e.preventDefault()
-
-        const formData = new FormData(e?.target)
-
-        const res = await fetch('/.netlify/functions/sendMail', {
-          method: 'POST',
-          body: formData,
-        })
-
-        const data = await res.json()
-        console.log('Serveur :', data)
-      })
-  </script>
 </div>

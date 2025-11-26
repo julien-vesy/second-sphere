@@ -59,6 +59,7 @@ export const handler = async (event) => {
           text: `
 Nom : ${fields.name}
 Email : ${fields.email}
+Adresse : ${fields.adresse}
 Message :
 ${fields.message}
           `,

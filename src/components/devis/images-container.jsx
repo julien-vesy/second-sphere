@@ -32,7 +32,7 @@ export default function Formulaire() {
   }
 
   return (
-    <div>
+    <div class="mt-4">
       <label class="block font-semibold mb-2">Images (max 5)</label>
 
       <div class="flex flex-wrap gap-4">
