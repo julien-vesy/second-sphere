@@ -75,16 +75,23 @@ const techniques = [
       <div
         class="flex flex-col justify-center md:items-start items-center max-w-[610px] h-[550px]"
       >
-        <h1 class="text-8xl font-bold text-center md:text-left mb-2">
+        <h1
+          class="text-6xl md:text-8xl font-bold text-center md:text-left mb-2"
+        >
           Redonnez vie
         </h1>
-        <h1 class="text-8xl font-bold text-center md:text-left mb-2">
+        <h1
+          class="text-6xl md:text-8xl font-bold text-center md:text-left mb-2"
+        >
           à vos cartes
         </h1>
-        <p class="text-xl text-center md:text-left">
+        <p class="text-xl text-center md:text-left mb-2 p-5 md:p-0">
           Restauration experte pour retrouver l’éclat, la précision et la valeur
           de vos jeux.
         </p>
+        <div class="w-[210px] h-[40px]">
+          <OrderCheck client:load />
+        </div>
       </div>
     </div>
     <div
@@ -142,9 +149,6 @@ const techniques = [
           Chaque carte mérite une seconde chance
         </p>
         <div class="flex flex-wrap gap-4 justify-center">
-          <div class="w-[210px] h-[40px]">
-            <OrderCheck client:only="solid-js" />
-          </div>
           <button
             onclick="location.href='prestations'"
             class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-background hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-10 rounded-md px-6 has-[>svg]:px-4 border-2 border-purple-600 text-purple-600 hover:bg-purple-50"
