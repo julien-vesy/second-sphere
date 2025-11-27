@@ -22,21 +22,21 @@ const values = [
     icon: Heart,
     title: 'Passion',
     description:
-      'Chaque carte raconte une histoire. Nous restaurons avec amour les souvenirs qui vous sont chers.',
+      'Chaque carte a son histoire et un propriétaire. Nous restaurons avec soin chaque carte qui nous a été confiée.',
     color: 'from-rose-400 to-pink-600',
   },
   {
     icon: Lightbulb,
-    title: 'Innovation',
+    title: 'Satisfaction',
     description:
-      "Des techniques modernes et respectueuses pour préserver l'authenticité de vos cartes.",
+      'La satisfaction client est notre priorité, toutes les étapes de la restauration de votre carte vous seront communiquées, et Fix My Card répondra au maximum à vos attentes.',
     color: 'from-amber-400 to-orange-600',
   },
   {
     icon: Users,
-    title: 'Communauté',
+    title: 'Précision',
     description:
-      'Nous sommes collectionneurs, comme vous. Votre satisfaction est notre priorité.',
+      'Toutes nos prestations sont réalisées avec le plus grand soin et la plus grande minutie.',
     color: 'from-blue-400 to-indigo-600',
   },
 ]
@@ -265,12 +265,12 @@ const techniques = [
     style={` background-image: url(${tcgDevicesBg.src});background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;`}
-    class="tcg-devices-section relative py-24 bg-gradient-to-br from-slate-900 to-indigo-900 text-white overflow-hidden"
+    class="tcg-devices-section relative py-24 bg-gradient-to-br from-slate-900 to-indigo-900 overflow-hidden"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="text-center mb-16">
-        <h2 class="text-5xl mb-6">Nos Valeurs</h2>
-        <p class="text-xl text-indigo-200 max-w-3xl mx-auto">
+        <h2 class="text-5xl mb-6 text-blue-600 font-bold">Nos Valeurs</h2>
+        <p class="text-xl text-black max-w-3xl mx-auto">
           Ce qui guide chaque geste, chaque décision, chaque restauration
         </p>
       </div>
@@ -289,10 +289,8 @@ const techniques = [
                   >
                     <value.icon class="w-12 h-12" />
                   </div>
-                  <h3 class="text-2xl mb-4">{value.title}</h3>
-                  <p class="text-indigo-100 leading-relaxed">
-                    {value.description}
-                  </p>
+                  <h3 class="text-2xl mb-4 text-blue-600">{value.title}</h3>
+                  <p class="text-black leading-relaxed">{value.description}</p>
                 </div>
               </div>
             </div>
