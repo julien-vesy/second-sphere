@@ -48,6 +48,30 @@ import FormSubmitHandler from './form-submit-handler.tsx'
         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
     </div>
+    <div>
+      <label for="codePostal" class="block mb-2 font-semibold">
+        Code Postal
+      </label>
+      <input
+        type="text"
+        inputmode="numeric"
+        pattern="^(?(^00000(|-0000))|(\d{5}(|-\d{4})))$"
+        id="codePostal"
+        name="codePostal"
+        required
+        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
+    <div>
+      <label for="ville" class="block mb-2 font-semibold">Ville</label>
+      <input
+        type="text"
+        id="ville"
+        name="ville"
+        required
+        class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+    </div>
 
     <div>
       <label for="message" class="block mb-2 font-semibold">Message</label>

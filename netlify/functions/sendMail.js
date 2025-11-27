@@ -60,6 +60,8 @@ export const handler = async (event) => {
 Nom : ${fields.name}
 Email : ${fields.email}
 Adresse : ${fields.adresse}
+Code Postal : ${fields.codePostal}
+Ville : ${fields.ville}
 Message :
 ${fields.message}
           `,
