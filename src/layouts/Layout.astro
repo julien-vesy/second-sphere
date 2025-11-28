@@ -15,10 +15,10 @@ import { ClientRouter } from 'astro:transitions'
     <ClientRouter />
   </head>
   <body class="m-0 w-full h-full overflow-hidden">
-    <Header />
+    <Header transition:persist />
     <div class="overflow-y-auto h-[calc(100%-64px)]">
       <slot />
-      <Footer />
+      <Footer transition:persist />
     </div>
   </body>
 </html>

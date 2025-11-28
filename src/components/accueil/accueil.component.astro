@@ -1,114 +1,141 @@
 ---
-import Droplet from '../../assets/icons/droplet.svg'
-import Scissor from '../../assets/icons/scissor.svg'
 import CheckCircle from '../../assets/icons/circle-check.svg'
 import Sparkles from '../../assets/icons/sparkles.svg'
-import Heart from '../../assets/icons/heart.svg'
-import Lightbulb from '../../assets/icons/lightbulb.svg'
-import Users from '../../assets/icons/users.svg'
-import Eye from '../../assets/icons/eye.svg'
-import OrderCheck from './order-check.jsx'
-import RayquazaCarte from '../../assets/illustrations/rayquaza-carte.webp'
-import DracolosseCarte from '../../assets/illustrations/dracolosse-carte.webp'
-import FixMyCard from '../../assets/illustrations/fix-my-card.jpg'
+import RaichuCorrection from '../../assets/illustrations/raichu-correction.jpg'
+import RaichuFinition from '../../assets/illustrations/raichu-finition.jpg'
+import RaichuNettoyage from '../../assets/illustrations/raichu-nettoyage.jpg'
+import RaichuRetouche from '../../assets/illustrations/raichu-retouche.jpg'
+import OrderCheck from './order-check.tsx'
+import FixMyCard from '../../assets/illustrations/fix-my-card.png'
 import { Image } from 'astro:assets'
+import Fix from '../../assets/illustrations/fix.png'
+import My from '../../assets/illustrations/my.png'
+import Card from '../../assets/illustrations/card.png'
+import pokePattern from '../../assets/illustrations/poke-pattern-2x.png'
+import tcgDevicesBg from '../../assets/illustrations/tcg-devices-bg.jpg'
+import tcgDevicesBgPattern from '../../assets/illustrations/tcg-devices-bg-pattern.png'
+import ShinyPokeball from '../../assets/illustrations/shiny-pokeball.png'
+import Masterball from '../../assets/illustrations/masterball.png'
+import LoveBall from '../../assets/illustrations/loveball.png'
+import ImageModal from '../realisations/image-modal.tsx'
 
 const values = [
   {
-    icon: Heart,
+    icon: LoveBall,
     title: 'Passion',
     description:
-      'Chaque carte raconte une histoire. Nous restaurons avec amour les souvenirs qui vous sont chers.',
+      'Chaque carte a son histoire et un propriétaire. Nous restaurons avec' +
+      ' soin chaque carte qui nous a été confiée.',
     color: 'from-rose-400 to-pink-600',
   },
   {
-    icon: Lightbulb,
-    title: 'Innovation',
+    icon: ShinyPokeball,
+    title: 'Satisfaction',
     description:
-      "Des techniques modernes et respectueuses pour préserver l'authenticité de vos cartes.",
+      'La satisfaction client est notre priorité, toutes les étapes de la' +
+      ' restauration de votre carte vous seront communiquées, et Fix My Card' +
+      ' répondra au maximum à vos attentes.',
     color: 'from-amber-400 to-orange-600',
   },
   {
-    icon: Users,
-    title: 'Communauté',
+    icon: Masterball,
+    title: 'Précision',
     description:
-      'Nous sommes collectionneurs, comme vous. Votre satisfaction est notre priorité.',
+      'Toutes nos prestations sont réalisées avec le plus grand soin et la' +
+      ' plus grande minutie.',
     color: 'from-blue-400 to-indigo-600',
   },
 ]
 
 const techniques = [
   {
-    icon: Droplet,
+    icon: RaichuNettoyage,
     title: 'Nettoyage minutieux',
     description:
-      'Élimination délicate des impuretés sans altérer les couleurs originales',
+      'Élimination délicate des impuretés sans altérer la surface de la carte',
   },
   {
-    icon: Scissor,
-    title: 'Redressement des bords',
-    description:
-      'Techniques de pressage professionnel pour redonner forme aux cartes',
+    icon: RaichuCorrection,
+    title: 'Correction des endommagements',
+    description: 'Correction des endommagements',
   },
   {
-    icon: Eye,
+    icon: RaichuRetouche,
     title: 'Retouche des détails',
-    description: 'Restauration minutieuse des zones endommagées avec précision',
+    description: 'Restauration minutieuse de la partie holographique',
   },
   {
-    icon: CheckCircle,
-    title: 'Finition protectrice',
+    icon: RaichuFinition,
+    title: 'Finition',
     description:
-      'Application de traitements pour préserver la restauration dans le temps',
+      'Techniques de pressage professionnel pour améliorer le rendu final de' +
+      ' la carte',
   },
 ]
 ---
 
+<style define:vars={{ patternUrl: `url(${tcgDevicesBgPattern.src})` }}>
+  .tcg-devices-section {
+    position: relative;
+  }
+
+  .tcg-devices-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: var(--patternUrl);
+    background-position: 50%;
+    background-size: 300px;
+    opacity: 0.2;
+    pointer-events: none;
+    z-index: 0;
+    height: 100%;
+    width: 100%;
+  }
+
+  .tcg-devices-section > * {
+    position: relative;
+    z-index: 1;
+  }
+</style>
+
 <div class="overflow-hidden">
   <section
-    class="relative min-h-screen flex items-center justify-center overflow-hidden"
+    style={`background-image: url(${pokePattern.src}); background-size: 300px;`}
+    class="min-h-[calc(100vh-64px)] grid grid-cols-1 lg:grid-cols-2 justify-center items-center
+    overflow-hidden"
   >
-    <div
-      class="absolute top-20 left-0 w-[600px] h-[600px] opacity-4 pointer-events-none"
-    >
-      <Image
-        id="RayquazaCarte"
-        src={RayquazaCarte}
-        alt="RayquazaCarte"
-        fetchpriority="high"
-        quality={80}
-        width={600}
-        height={600}
-        format="webp"
-        class="w-full h-full object-contain"
-      />
+    <div class="flex justify-center items-center md:mx-5">
+      <div
+        class="flex flex-col justify-center lg:items-start items-center
+        max-w-[610px] h-[550px]"
+      >
+        <h1
+          class="text-6xl lg:text-8xl font-bold text-center lg:text-left mb-2"
+        >
+          Redonnez vie
+        </h1>
+        <h1
+          class="text-6xl lg:text-8xl font-bold text-center lg:text-left mb-2"
+        >
+          à vos cartes
+        </h1>
+        <p class="text-xl text-center lg:text-left mb-2 p-5 lg:p-0">
+          Restauration experte pour retrouver l’éclat, la précision et la valeur
+          de vos jeux.
+        </p>
+        <div class="w-[210px] h-[40px]">
+          <OrderCheck client:load />
+        </div>
+      </div>
     </div>
     <div
-      class="absolute top-20 right-0 w-[600px] h-[600px] opacity-4 pointer-events-none"
-    >
-      <Image
-        id="DracolosseCarte"
-        src={DracolosseCarte}
-        alt="DracolosseCarte"
-        fetchpriority="high"
-        quality={80}
-        width={600}
-        height={600}
-        format="webp"
-        class="w-full h-full object-contain"
-      />
-    </div>
-
-    <div
-      class="absolute inset-0 bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 -z-10"
-    >
-    </div>
-
-    <div
-      class="mt-8 bg-white max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative z-10 bg-card text-card-foreground flex flex-col gap-6 rounded-xl border hover:shadow-xl transition-shadow"
+      class="h-[750px] mb-0 flex justify-center items-center
+       bg-white w-full md:w-auto max-w-full md:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative
+      z-10 bg-card text-card-foreground flex-col gap-6 rounded-xl md:border transition-shadow"
     >
       <div class="text-center">
-        <div class="inline-block mb-6">
+        <div class="inline-block">
           <Image
             id="FixMyCard"
             src={FixMyCard}
@@ -121,11 +148,37 @@ const techniques = [
             class="w-21 h-21 text-yellow-500 mx-auto"
           />
         </div>
-        <h1
-          class="text-6xl md:text-7xl mb-6 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
-        >
-          Fix My Card
-        </h1>
+        <div class="w-full flex justify-center align-middle">
+          <Image
+            id="fix"
+            src={Fix}
+            alt="Fix"
+            fetchpriority="high"
+            quality={80}
+            width={120}
+            format="webp"
+          />
+          <Image
+            id="my"
+            src={My}
+            alt="My"
+            fetchpriority="high"
+            quality={80}
+            width={120}
+            format="webp"
+          />
+        </div>
+        <div class="w-full flex justify-center align-middle">
+          <Image
+            id="card"
+            src={Card}
+            alt="card"
+            fetchpriority="high"
+            quality={80}
+            width={200}
+            format="webp"
+          />
+        </div>
         <p class="text-2xl md:text-3xl text-gray-700 mb-4 max-w-3xl mx-auto">
           Redonner vie à vos souvenirs
         </p>
@@ -133,106 +186,96 @@ const techniques = [
           Chaque carte mérite une seconde chance
         </p>
         <div class="flex flex-wrap gap-4 justify-center">
-          <div class="w-[210px] h-[40px]">
-            <OrderCheck client:only="solid-js" />
-          </div>
           <button
             onclick="location.href='prestations'"
-            class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive bg-background hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-10 rounded-md px-6 has-[>svg]:px-4 border-2 border-purple-600 text-purple-600 hover:bg-purple-50"
+            class="inline-flex items-center justify-center gap-2
+            whitespace-nowrap text-sm font-medium transition-all
+            disabled:pointer-events-none disabled:opacity-50
+            [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4
+            shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring
+            focus-visible:ring-ring/50 focus-visible:ring-[3px]
+            aria-invalid:ring-destructive/20
+            dark:aria-invalid:ring-destructive/40
+            aria-invalid:border-destructive bg-background
+            hover:text-accent-foreground dark:bg-input/30 dark:border-input
+            dark:hover:bg-input/50 h-10 rounded-md px-6 has-[>svg]:px-4
+            border-2 border-purple-600 text-purple-600 hover:bg-purple-50"
           >
-            Découvrir nos réalisations
+            Nos prestations
           </button>
         </div>
       </div>
     </div>
   </section>
 
-  {/* Notre Histoire */}
   <section class="relative py-24 bg-white overflow-hidden">
-    {/* Background Pokemon - Charizard */}
-    <div
-      class="absolute bottom-0 left-0 w-[500px] h-[500px] opacity-5 pointer-events-none"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1640271197084-2477813a92fa?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGFyaXphcmQlMjBwb2tlbW9ufGVufDF8fHx8MTc2MzYyOTMwNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-        alt="Charizard background"
-        class="w-full h-full object-contain"
-      />
-    </div>
-
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div>
           <h2
-            class="text-5xl mb-6 bg-gradient-to-r from-orange-600 to-red-600 bg-clip-text text-transparent"
+            class="text-5xl mb-6 bg-gradient-to-r from-orange-600 to-red-600
+            bg-clip-text text-transparent"
           >
             Notre Histoire
           </h2>
           <div class="space-y-4 text-gray-700">
             <p class="text-lg leading-relaxed">
-              Tout a commencé par une carte Dracaufeu abîmée trouvée dans un
-              grenier. Cette découverte a éveillé en nous une passion : <span
-                class="italic">préserver l'histoire</span
-              >
-              que chaque carte porte en elle.
+              Tout a commencé par une erreur, un ami m’a abîmé une carte,&nbsp;
+              et j’étais extrêmement triste car c’était la carte de mes&nbsp;
+              rêves. C’était une occasion d’ouvrir une porte alors encore&nbsp;
+              jamais explorée. D’une carte abîmée est née une envie,&nbsp;
+              l’améliorer pour tenter de retrouver son état initial,&nbsp;
+              préserver l’émotion qu’elle renferme.
             </p>
             <p class="text-lg leading-relaxed">
-              Depuis 2020, nous avons développé des <span class="font-medium"
-                >techniques uniques</span
-              > de restauration qui respectent l'intégrité de vos cartes. Notre approche
-              combine savoir-faire artisanal et technologies modernes.
+              Tout bon collectionneur de carte Pokémon a une carte à&nbsp;
+              laquelle il pense quand on lui dit le mot “collection”, des&nbsp;
+              émotions attachées à celle-ci.
             </p>
             <p class="text-lg leading-relaxed">
-              La restauration de cartes Pokémon n'est pas qu'une question
-              d'esthétique : c'est
-              <span class="font-medium"> préserver des souvenirs</span>, <span
-                class="font-medium">valoriser des collections</span
-              >, et <span class="font-medium">redonner leur dignité</span> à ces
-              objets qui ont marqué notre enfance.
+              Chez Fix My Card c'est l’objectif, prendre soin de vos&nbsp;
+              cartes de collection, et ainsi préserver ces émotions qui&nbsp;
+              nous sont si chères, celles pour lesquelles nous continuons&nbsp;
+              à être passionnés.
             </p>
           </div>
         </div>
         <div class="relative">
           <div
-            class="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br from-orange-200 to-red-200 rounded-2xl"
+            class="absolute -top-4 -left-4 w-full h-full bg-gradient-to-br
+            from-orange-200 to-red-200 rounded-2xl"
           >
           </div>
           <div class="relative bg-white p-8 rounded-2xl shadow-xl">
             <h3 class="text-2xl mb-4 text-gray-900">
-              La légitimité de la restauration
+              Intérêt de la restauration
             </h3>
             <ul class="space-y-3">
               <li class="flex items-start gap-3">
                 <CheckCircle
                   class="w-5 h-5 text-green-600 mt-1 flex-shrink-0"
                 />
-                <span class="text-gray-700"
-                  >Préservation du patrimoine ludique</span
-                >
+                <span class="text-gray-700">
+                  Amélioration de l’état global de la carte (LP → GOOD)&nbsp;
+                  c’était l’état de la carte tu peux mettre le logo de&nbsp;
+                  cardmarket celui en rouge et celui en jaune pour illustrer
+                </span>
               </li>
               <li class="flex items-start gap-3">
                 <CheckCircle
                   class="w-5 h-5 text-green-600 mt-1 flex-shrink-0"
                 />
-                <span class="text-gray-700"
-                  >Revalorisation de cartes endommagées</span
-                >
+                <span class="text-gray-700">
+                  Revalorisation de la carte (note de gradation 7 fleche up)
+                </span>
               </li>
               <li class="flex items-start gap-3">
                 <CheckCircle
                   class="w-5 h-5 text-green-600 mt-1 flex-shrink-0"
                 />
-                <span class="text-gray-700"
-                  >Techniques non-invasives et réversibles</span
-                >
-              </li>
-              <li class="flex items-start gap-3">
-                <CheckCircle
-                  class="w-5 h-5 text-green-600 mt-1 flex-shrink-0"
-                />
-                <span class="text-gray-700"
-                  >Transparence totale sur nos interventions</span
-                >
+                <span class="text-gray-700">
+                  Entretien d’une collection (un classeur propre)
+                </span>
               </li>
             </ul>
           </div>
@@ -241,25 +284,17 @@ const techniques = [
     </div>
   </section>
 
-  {/* Nos Valeurs - Section artistique */}
   <section
-    class="relative py-24 bg-gradient-to-br from-slate-900 to-indigo-900 text-white overflow-hidden"
+    style={` background-image: url(${tcgDevicesBg.src});background-position: 50%;
+    background-repeat: no-repeat;
+    background-size: cover;`}
+    class="tcg-devices-section relative py-24 bg-gradient-to-br from-slate-900
+    to-indigo-900 overflow-hidden"
   >
-    {/* Background Pokemon - Mewtwo */}
-    <div
-      class="absolute top-1/2 right-0 -translate-y-1/2 w-[700px] h-[700px] opacity-10 pointer-events-none"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1695552166827-5da4059be4ec?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtZXd0d28lMjBwb2tlbW9ufGVufDF8fHx8MTc2MzU0NDI4OHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-        alt="Mewtwo background"
-        class="w-full h-full object-contain"
-      />
-    </div>
-
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="text-center mb-16">
-        <h2 class="text-5xl mb-6">Nos Valeurs</h2>
-        <p class="text-xl text-indigo-200 max-w-3xl mx-auto">
+        <h2 class="text-5xl mb-6 text-blue-600 font-bold">Nos Valeurs</h2>
+        <p class="text-xl text-black max-w-3xl mx-auto">
           Ce qui guide chaque geste, chaque décision, chaque restauration
         </p>
       </div>
@@ -270,16 +305,28 @@ const techniques = [
             <div>
               <div
                 data-slot="card"
-                class="bg-white/10 backdrop-blur-sm border-white/20 hover:bg-white/20 transition-all duration-300 h-full"
+                class="bg-white/10 backdrop-blur-sm border-white/20
+                transition-all duration-300 h-full shadow-xl
+                rounded-xl"
               >
                 <div data-slot="card-content" class="pt-8 text-center">
                   <div
-                    class={`inline-flex p-4 rounded-full bg-gradient-to-br ${value.color} mb-6`}
+                    class={`inline-flex py-6 px-3 rounded-lg bg-gradient-to-br ${value.color} mb-6`}
                   >
-                    <value.icon class="w-12 h-12" />
+                    <Image
+                      src={value.icon}
+                      alt={value.title}
+                      width={48}
+                      class="w-12 h-12"
+                      fetchpriority="high"
+                      quality={90}
+                      format="webp"
+                    />
                   </div>
-                  <h3 class="text-2xl mb-4">{value.title}</h3>
-                  <p class="text-indigo-100 leading-relaxed">
+                  <h3 class="text-2xl mb-4 text-blue-600 font-semibold">
+                    {value.title}
+                  </h3>
+                  <p class="text-black leading-relaxed m-3">
                     {value.description}
                   </p>
                 </div>
@@ -291,27 +338,16 @@ const techniques = [
     </div>
   </section>
 
-  {/* Notre Processus - Techniques de travail */}
   <section
     class="relative py-24 bg-gradient-to-br from-purple-50 to-blue-50 overflow-hidden"
   >
-    {/* Background Pokemon - Artistic */}
-    <div
-      class="absolute top-20 left-1/2 -translate-x-1/2 w-[800px] h-[800px] opacity-5 pointer-events-none"
-    >
-      <img
-        src="https://images.unsplash.com/photo-1668119065849-d8a7e9d73a7b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxwb2tlbW9uJTIwYXJ0aXN0aWN8ZW58MXx8fHwxNzYzNjI5MzA2fDA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
-        alt="Pokemon background"
-        class="w-full h-full object-contain"
-      />
-    </div>
-
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="text-center mb-16">
         <h2
-          class="text-5xl mb-6 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent"
+          class="text-5xl mb-6 bg-gradient-to-r from-purple-600 to-blue-600
+          bg-clip-text text-transparent"
         >
-          Notre Processus de Restauration
+          Notre processus de restauration
         </h2>
         <p class="text-xl text-gray-700 max-w-3xl mx-auto">
           Des techniques professionnelles pour un résultat exceptionnel
@@ -320,23 +356,27 @@ const techniques = [
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
         {
-          techniques.map((technique, index) => (
+          techniques.map((technique) => (
             <div class="relative">
-              <div class="absolute -top-4 -left-4 text-8xl text-purple-200/30 pointer-events-none">
-                {index + 1}
-              </div>
               <div
                 data-slot="card"
                 class="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
               >
                 <div data-slot="card-content" class="pt-6">
                   <div class="flex justify-center mb-4">
-                    <div class="p-3 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 text-white">
-                      <technique.icon class="w-8 h-8" />
+                    <div>
+                      <Image
+                        data-clickable-image
+                        src={technique.icon}
+                        alt={technique.description}
+                        quality={80}
+                        width={630}
+                        class="cursor-pointer  rounded-lg  lg:w-[210px] lg:h-[280px] md:w-[315px] md:h-[420px]"
+                      />
                     </div>
                   </div>
                   <h3 class="text-xl mb-3 text-center">{technique.title}</h3>
-                  <p class="text-gray-600 text-center text-sm leading-relaxed">
+                  <p class="text-gray-600 m-2 text-center text-sm leading-relaxed">
                     {technique.description}
                   </p>
                 </div>
@@ -348,16 +388,20 @@ const techniques = [
 
       <div class="mt-16 text-center">
         <button
-          onclick="location.href='prestations'"
-          class="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 shadow-lg"
+          onclick="location.href='mes-realisations'"
+          class="bg-gradient-to-r from-purple-600 to-blue-600
+          hover:from-purple-700 hover:to-blue-700 shadow-lg
+          text-white inline-flex items-center justify-center gap-2
+          whitespace-nowrap text-sm font-medium transition-all outline-none
+          focus-visible:ring-2 h-10 rounded-md px-6 cursor-pointer
+          active:scale-95"
         >
-          Découvrir toutes nos prestations
+          Découvrir toutes mes réalisations
         </button>
       </div>
     </div>
   </section>
 
-  {/* L'Art de la Restauration - Section poétique */}
   <section
     class="relative py-24 bg-gradient-to-br from-amber-50 to-orange-50 overflow-hidden"
   >
@@ -390,41 +434,9 @@ const techniques = [
     </div>
   </section>
 
-  {/* Stats & Social Proof */}
-  <section class="py-20 bg-white">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-        <div class="text-center">
-          <div
-            class="text-6xl mb-3 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent"
-          >
-            500+
-          </div>
-          <p class="text-xl text-gray-700">Cartes restaurées avec amour</p>
-        </div>
-        <div class="text-center">
-          <div
-            class="text-6xl mb-3 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent"
-          >
-            98%
-          </div>
-          <p class="text-xl text-gray-700">Collectionneurs satisfaits</p>
-        </div>
-        <div class="text-center">
-          <div
-            class="text-6xl mb-3 bg-gradient-to-r from-pink-600 to-orange-600 bg-clip-text text-transparent"
-          >
-            5+
-          </div>
-          <p class="text-xl text-gray-700">Années de passion et d'expertise</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* CTA Final */}
   <section
-    class="relative py-24 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 text-white overflow-hidden"
+    class="relative py-24 bg-gradient-to-br from-blue-600 via-purple-600
+    to-pink-600 text-white overflow-hidden"
   >
     <div class="absolute inset-0 opacity-10">
       <div
@@ -451,13 +463,20 @@ const techniques = [
         <div class="flex flex-wrap gap-4 justify-center">
           <button
             onclick="location.href='devis'"
-            class="bg-white text-purple-600 hover:bg-gray-100 shadow-xl"
+            class="bg-white text-purple-600 hover:bg-gray-100 shadow-xl
+            inline-flex items-center justify-center gap-2 whitespace-nowrap
+            text-sm font-medium transition-all outline-none focus-visible:ring-2
+            h-10 rounded-md px-6 cursor-pointer active:scale-95"
           >
             Demander un devis gratuit
           </button>
           <button
             onclick="location.href='about'"
-            class="border-2 border-white text-white hover:bg-white/10"
+            class="border-2 border-white text-white hover:bg-white/10
+            shadow-xl inline-flex items-center justify-center gap-2
+            whitespace-nowrap text-sm font-medium transition-all outline-none
+            focus-visible:ring-2 h-10 rounded-md px-6 cursor-pointer
+            active:scale-95"
           >
             En savoir plus sur nous
           </button>
@@ -465,4 +484,5 @@ const techniques = [
       </div>
     </div>
   </section>
+  <ImageModal client:load />
 </div>

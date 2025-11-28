@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets'
-import ImageModal from './image-modal.jsx'
+import ImageModal from './image-modal.tsx'
 import Flagadoss from '../../assets/illustrations/flagadoss.jpeg'
 import Rayquaza from '../../assets/illustrations/rayquaza.jpeg'
 import Drac from '../../assets/illustrations/drac.jpeg'
@@ -65,21 +65,18 @@ const projects = [
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="text-center mb-12">
       <h1 class="text-5xl mb-4 text-gray-900">Mes réalisations</h1>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-        Découvrez quelques-unes de nos restaurations les plus réussies
-      </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
       {
         projects.map((project) => (
           <div
-            data-image={project.image}
             data-slot="card"
-            class="cursor-pointer bg-card text-card-foreground flex flex-col gap-6 rounded-xl border overflow-hidden hover:shadow-xl transition-shadow"
+            class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl border overflow-hidden hover:shadow-xl transition-shadow"
           >
-            <div class="relative h-64 overflow-hidden">
+            <div class="relative h-64 overflow-hidden cursor-pointer">
               <Image
+                data-clickable-image
                 src={project.image}
                 alt={project.title}
                 quality={80}
