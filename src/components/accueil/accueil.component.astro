@@ -99,10 +99,8 @@ const techniques = [
 
 <div class="overflow-hidden">
   <section
-    style={`min-height: calc(100vh - 64px);
-    background-image: url(${pokePattern.src});
-    background-size: 300px;`}
-    class="grid grid-cols-1 md:grid-cols-2 justify-center items-center
+    style={`background-image: url(${pokePattern.src}); background-size: 300px;`}
+    class="min-h-[calc(100vh-64px)] grid grid-cols-1 md:grid-cols-2 justify-center items-center
     overflow-hidden"
   >
     <div class="flex justify-center items-center">
@@ -131,7 +129,7 @@ const techniques = [
     </div>
     <div
       class="h-[750px] mb-7 md:mb-0 flex justify-center items-center
-      bg-white sm:max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-20 relative
+       bg-white max-w-full sm:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 relative
       z-10 bg-card text-card-foreground flex-col gap-6 rounded-xl sm:border
       hover:shadow-xl transition-shadow"
     >
