@@ -23,7 +23,7 @@ export const handler: Handler = async (): Promise<HandlerResponse> => {
     }
 
     const data: Array<{
-      enableOrder?: boolean
+      enableOrder: boolean
     }> = await response.json()
 
     return {
