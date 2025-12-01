@@ -8,7 +8,7 @@ export default function OrderCheck() {
 
   return (
     <>
-      <Show when={orderStatusStore.statusSignal() === 'loading'}>
+      <Show when={orderStatusStore.isLoading()}>
         <button
           disabled
           class="text-white inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none h-10 rounded-md px-6 bg-gradient-to-r from-gray-400 to-gray-500 shadow-lg cursor-not-allowed"
@@ -16,7 +16,8 @@ export default function OrderCheck() {
           <span class="animate-pulse">Chargement...</span>
         </button>
       </Show>
-      <Show when={orderStatusStore.statusSignal() === 'error'}>
+
+      <Show when={orderStatusStore.isError()}>
         <button
           disabled
           class="text-white inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none h-10 rounded-md px-6 bg-gradient-to-r from-gray-400 to-gray-500 shadow-lg cursor-not-allowed"
@@ -24,7 +25,8 @@ export default function OrderCheck() {
           ⚠️ Erreur
         </button>
       </Show>
-      <Show when={orderStatusStore.statusSignal() === 'open'}>
+
+      <Show when={orderStatusStore.isOpen()}>
         <button
           onClick={() => (window.location.href = '/devis')}
           class="text-white inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all outline-none focus-visible:ring-2 h-10 rounded-md px-6 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg cursor-pointer active:scale-95"
@@ -36,7 +38,8 @@ export default function OrderCheck() {
           &nbsp;Commandes ouvertes
         </button>
       </Show>
-      <Show when={orderStatusStore.statusSignal() === 'closed'}>
+
+      <Show when={orderStatusStore.isClosed()}>
         <button
           disabled
           class="text-white inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 outline-none h-10 rounded-md px-6 bg-gradient-to-r from-gray-400 to-gray-500 shadow-lg cursor-not-allowed"

@@ -12,7 +12,7 @@ const OrderStatusChecker = (props: Props) => {
 
   return (
     <>
-      <Show when={orderStatusStore.statusSignal() === 'loading'}>
+      <Show when={orderStatusStore.isLoading()}>
         <div class="flex items-center gap-3 text-gray-600">
           <svg
             class="animate-spin h-5 w-5"
@@ -38,22 +38,17 @@ const OrderStatusChecker = (props: Props) => {
         </div>
       </Show>
 
-      <Show
-        when={
-          orderStatusStore.statusSignal() === 'closed' ||
-          orderStatusStore.statusSignal() === 'error'
-        }
-      >
+      <Show when={orderStatusStore.isClosed() || orderStatusStore.isError()}>
         <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
           <p class="text-lg text-yellow-800">
-            {orderStatusStore.statusSignal() === 'error'
+            {orderStatusStore.isError()
               ? 'Une erreur est survenue. Veuillez réessayer plus tard.'
               : 'Les commandes sont actuellement fermées. Veuillez revenir plus tard.'}
           </p>
         </div>
       </Show>
 
-      <Show when={orderStatusStore.statusSignal() === 'open'}>
+      <Show when={orderStatusStore.isOpen()}>
         {props.children}
       </Show>
     </>
