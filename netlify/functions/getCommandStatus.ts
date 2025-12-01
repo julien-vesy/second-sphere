@@ -13,8 +13,12 @@ export const handler: Handler = async (): Promise<HandlerResponse> => {
 
     if (!response.ok) {
       return {
-        statusCode: response.status,
-        body: JSON.stringify({ error: 'Failed to fetch config' }),
+        statusCode: 200,
+        headers: {
+          'Content-Type': 'application/json',
+          'Cache-Control': 'public, max-age=60',
+        },
+        body: JSON.stringify({ ordersOpen: false }),
       }
     }
 
@@ -33,8 +37,12 @@ export const handler: Handler = async (): Promise<HandlerResponse> => {
   } catch (error) {
     console.error('Error fetching config:', error)
     return {
-      statusCode: 500,
-      body: JSON.stringify({ error: 'Internal server error' }),
+      statusCode: 200,
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'public, max-age=60',
+      },
+      body: JSON.stringify({ ordersOpen: false }),
     }
   }
 }
