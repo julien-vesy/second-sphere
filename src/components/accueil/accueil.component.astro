@@ -316,9 +316,9 @@ const techniques = [
                     <Image
                       src={value.icon}
                       alt={value.title}
+                      fetchpriority="low"
                       width={48}
                       class="w-12 h-12"
-                      fetchpriority="high"
                       quality={90}
                       format="webp"
                     />
@@ -366,6 +366,7 @@ const techniques = [
                   <div class="flex justify-center mb-4">
                     <div>
                       <Image
+                        fetchpriority="low"
                         data-clickable-image
                         src={technique.icon}
                         alt={technique.description}
