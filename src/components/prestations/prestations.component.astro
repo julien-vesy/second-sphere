@@ -156,12 +156,17 @@ const processes = [
       <p class="text-xl text-gray-600 mb-6">
         Demandez un devis gratuit et personnalisé dès maintenant
       </p>
-      <button
-        onclick="location.href='devis'"
-        class="bg-blue-500 hover:bg-blue-600 text-white font-medium px-8 py-3 rounded-md transition-colors"
+      <a
+        href="/devis"
+        class="w-60 h-10 bg-gradient-to-r from-purple-600 to-blue-600
+          hover:from-purple-700 hover:to-blue-700 shadow-lg
+          text-white inline-flex items-center justify-center gap-2
+          whitespace-nowrap text-sm font-medium transition-all outline-none
+          focus-visible:ring-2 rounded-md px-6 cursor-pointer
+          active:scale-95"
       >
         Demander un devis gratuit
-      </button>
+      </a>
     </div>
   </div>
 </div>

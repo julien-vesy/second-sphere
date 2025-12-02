@@ -1,4 +1,4 @@
-import { createMemo, createSignal } from 'solid-js'
+import { createMemo, createRoot, createSignal } from 'solid-js'
 import { fetchOrderStatus } from '../utils/order-status-api.ts'
 import {
   getCachedOrderStatus,
@@ -40,17 +40,23 @@ const refreshOrderStatus = async (): Promise<void> => {
   await loadOrderStatus()
 }
 
-const isLoading = createMemo(() => orderStatus() === 'loading')
-const isOpen = createMemo(() => orderStatus() === 'open')
-const isClosed = createMemo(() => orderStatus() === 'closed')
-const isError = createMemo(() => orderStatus() === 'error')
+const createStore = () =>
+  createRoot(() => {
+    const isLoading = createMemo(() => orderStatus() === 'loading')
+    const isOpen = createMemo(() => orderStatus() === 'open')
+    const isClosed = createMemo(() => orderStatus() === 'closed')
+    const isError = createMemo(() => orderStatus() === 'error')
 
-export const orderStatusStore = {
-  isLoading,
-  isOpen,
-  isClosed,
-  isError,
-  initialized: isInitialized,
-  load: loadOrderStatus,
-  refresh: refreshOrderStatus,
-}
+    return {
+      isLoading,
+      isOpen,
+      isClosed,
+      isError,
+      initialized: isInitialized,
+
+      load: loadOrderStatus,
+      refresh: refreshOrderStatus,
+    }
+  })
+
+export const orderStatusStore = createStore()
