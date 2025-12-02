@@ -7,11 +7,12 @@ import { Image } from 'astro:assets'
 import Fix from '../assets/illustrations/fix.png'
 import My from '../assets/illustrations/my.png'
 import Card from '../assets/illustrations/card.png'
+import Instagram from '../assets/illustrations/instagram.png'
 ---
 
 <footer class="bg-gray-900 text-white">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
       <div>
         <div class="flex items-center space-x-2 mb-4">
           <a class="flex items-center">
@@ -19,7 +20,7 @@ import Card from '../assets/illustrations/card.png'
               id="fixMyCard"
               src={FixMyCard}
               alt="FixMycard"
-              fetchpriority="high"
+              fetchpriority="low"
               quality={90}
               width={48}
               height={48}
@@ -31,7 +32,7 @@ import Card from '../assets/illustrations/card.png'
               src={Fix}
               style="height:27px; width:47px;"
               alt="Fix"
-              fetchpriority="high"
+              fetchpriority="low"
               quality={80}
               width={100}
               fit="contain"
@@ -44,7 +45,7 @@ import Card from '../assets/illustrations/card.png'
               src={My}
               alt="My"
               style="height:31px; width:44px;"
-              fetchpriority="high"
+              fetchpriority="low"
               quality={80}
               width={100}
               format="webp"
@@ -57,7 +58,7 @@ import Card from '../assets/illustrations/card.png'
               src={Card}
               alt="card"
               style="height:34px; width:64px;"
-              fetchpriority="high"
+              fetchpriority="low"
               quality={80}
               width={100}
               position="center"
@@ -94,10 +95,28 @@ import Card from '../assets/illustrations/card.png'
           <p>7/7: 9h - 22h</p>
         </div>
       </div>
-    </div>
+      <div>
+        <h3 class="text-lg mb-4">Réseaux sociaux</h3>
+        <div class="space-y-1 text-gray-400">
+          <a href="https://www.instagram.com/fixmycard/" target="_blank">
+            <Image
+              id="instagram"
+              src={Instagram}
+              alt="instagram"
+              fetchpriority="low"
+              quality={80}
+              width={48}
+              height={48}
+              format="webp"
+              class="mr-3"
+            />
+          </a>
+        </div>
+      </div>
 
-    <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
-      <p>&copy; 2025 Fix My Card. Tous droits réservés.</p>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+        <p>&copy; 2025 Fix My Card. Tous droits réservés.</p>
+      </div>
     </div>
   </div>
 </footer>
