@@ -7,17 +7,36 @@ import RaichuNettoyage from '../../assets/illustrations/raichu-nettoyage.jpg'
 import RaichuRetouche from '../../assets/illustrations/raichu-retouche.jpg'
 import OrderCheck from './order-check.tsx'
 import FixMyCard from '../../assets/illustrations/fix-my-card.png'
-import { Image } from 'astro:assets'
+import { Image, getImage } from 'astro:assets'
 import Fix from '../../assets/illustrations/fix.png'
 import My from '../../assets/illustrations/my.png'
 import Card from '../../assets/illustrations/card.png'
-import pokePattern from '../../assets/illustrations/poke-pattern-2x.png'
+import pokePatternSrc from '../../assets/illustrations/poke-pattern-2x.png'
 import tcgDevicesBg from '../../assets/illustrations/tcg-devices-bg.jpg'
-import tcgDevicesBgPattern from '../../assets/illustrations/tcg-devices-bg-pattern.png'
+import tcgDevicesBgPatternSrc from '../../assets/illustrations/tcg-devices-bg-pattern.png'
 import ShinyPokeball from '../../assets/illustrations/shiny-pokeball.png'
 import Masterball from '../../assets/illustrations/masterball.png'
 import LoveBall from '../../assets/illustrations/loveball.png'
 import ImageModal from '../realisations/image-modal.tsx'
+
+const pokePattern = await getImage({
+  src: pokePatternSrc,
+  format: 'webp',
+  width: 300,
+  quality: 90,
+})
+const tcgDevicesBgPattern = await getImage({
+  src: tcgDevicesBgPatternSrc,
+  format: 'webp',
+  width: 391,
+  quality: 80,
+})
+const tcgDevicesBgOptimized = await getImage({
+  src: tcgDevicesBg,
+  format: 'webp',
+  width: 1000,
+  quality: 80,
+})
 
 const values = [
   {
@@ -285,7 +304,7 @@ const techniques = [
   </section>
 
   <section
-    style={` background-image: url(${tcgDevicesBg.src});background-position: 50%;
+    style={`background-image: url(${tcgDevicesBgOptimized.src});background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;`}
     class="tcg-devices-section relative py-24 bg-gradient-to-br from-slate-900
