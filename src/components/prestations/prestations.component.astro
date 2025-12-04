@@ -1,12 +1,13 @@
 ---
-import Droplet from '../../assets/icons/droplet.svg'
-import Refresh from '../../assets/icons/refresh.svg'
-import Scissor from '../../assets/icons/scissor.svg'
+import Minidraco from '../../assets/illustrations/minidraco_blue.png'
+import Draco from '../../assets/illustrations/draco_blue.png'
+import Dracolosse from '../../assets/illustrations/dracoloss_blue.png'
 import CircleCheck from '../../assets/icons/circle-check.svg'
+import { Image } from 'astro:assets'
 
 const services = [
   {
-    icon: Droplet,
+    icon: Minidraco,
     title: 'Formule Mini Draco',
     description: 'Nettoyage professionnel et correction des micro rayures.',
     price: 'A partir de 10€ + 6.99€ en livraison*',
@@ -18,7 +19,7 @@ const services = [
     ],
   },
   {
-    icon: Refresh,
+    icon: Draco,
     title: 'Formule Draco',
     description: 'Correction d’un endommagement précis et nettoyage',
     price: 'A partir de 20€ + 6.99€ en livraison*',
@@ -30,7 +31,7 @@ const services = [
     ],
   },
   {
-    icon: Scissor,
+    icon: Dracolosse,
     title: 'Formule Dracolosse',
     description: 'Pour une carte qui a de nombreux endommagements',
     price: 'A partir de 35€ + 6.99€ en livraison*',
@@ -98,7 +99,15 @@ const processes = [
           >
             <div class="flex flex-col gap-1.5 h-[160px] md:h-[140px] px-6 pt-6 ">
               <div class="mb-4">
-                <service.icon class="w-10 h-10 text-blue-600" />
+                <Image
+                  src={service.icon}
+                  quality={80}
+                  alt="test"
+                  width={40}
+                  height={40}
+                  format="webp"
+                  class="w-10 h-10 "
+                />
               </div>
               <h4 class="leading-none">{service.title}</h4>
               <p class="text-gray-500 text-muted-foreground">
@@ -107,7 +116,9 @@ const processes = [
             </div>
             <div data-slot="card-content" class="px-6 [&:last-child]:pb-6">
               <div class="mb-4">
-                <span class="text-2xl text-blue-600">{service.price}</span>
+                <span class="text-2xl font-medium text-custom-blue">
+                  {service.price}
+                </span>
               </div>
               <ul class="space-y-2">
                 {service.features.map((feature) => (
