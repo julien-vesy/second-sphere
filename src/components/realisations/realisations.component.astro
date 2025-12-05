@@ -14,12 +14,30 @@ import MinidracoBlue from '../../assets/illustrations/minidraco_blue.png'
 import DracoBlue from '../../assets/illustrations/draco_blue.png'
 import DracolosseBlue from '../../assets/illustrations/dracoloss_blue.png'
 
+// Fonction pour charger toutes les images d'un dossier de carrousel
+const loadCarouselImages = async (folderName: string) => {
+  const images = import.meta.glob(
+    '../../assets/illustrations/realisations/carrousel/**/*.{jpg,jpeg,png}'
+  )
+  const carouselImages = []
+
+  for (const path in images) {
+    if (path.includes(`/carrousel/${folderName}/`)) {
+      const image = await images[path]()
+      carouselImages.push((image as any).default.src)
+    }
+  }
+
+  return carouselImages
+}
+
 const projects = [
   {
     title: 'Flagadoss - Southern Islands',
     description: 'Nettoyage professionnel',
     service: MinidracoBlue,
     image: Flagadoss,
+    carouselFolder: 'flagadoss',
     before: 'État: présence de saleté, présence de micro rayures',
   },
   {
@@ -27,6 +45,7 @@ const projects = [
     description: 'Restauration totale',
     service: DracolosseBlue,
     image: Rayquaza,
+    carouselFolder: 'rayquaza',
     before:
       'État: présence de saletés, présence de micro rayure, pliures importantes',
   },
@@ -35,6 +54,7 @@ const projects = [
     description: 'Correction d’un endommagement précis',
     service: DracoBlue,
     image: Drac,
+    carouselFolder: 'dracaufeu',
     before: 'État: présence d’une tranche relevée',
   },
   {
@@ -42,12 +62,14 @@ const projects = [
     description: 'Correction d’un endommagement précis',
     service: DracoBlue,
     image: Alakazam,
+    carouselFolder: 'alakazam',
     before: 'État: pliure sur la partie holographique',
   },
   {
     title: 'Dracolosse V - Évolution Céleste',
     service: DracolosseBlue,
     image: Dracolosse,
+    carouselFolder: 'dracolosse',
     description: 'Restauration totale',
     before: 'État: Pliure importante, enfoncements',
   },
@@ -55,6 +77,7 @@ const projects = [
     title: 'Lugia V - Évolution Céleste',
     service: DracolosseBlue,
     image: Lugia,
+    carouselFolder: 'lugia',
     description: 'Restauration totale',
     before: 'État: Pliure importante, enfoncements',
   },
@@ -62,6 +85,7 @@ const projects = [
     title: 'Latios V - Évolution Céleste',
     service: DracolosseBlue,
     image: Latios,
+    carouselFolder: 'latios',
     description: 'Restauration totale',
     before: 'État: Pliure importante, enfoncements',
   },
@@ -69,6 +93,7 @@ const projects = [
     title: 'Rayquaza2 V - Évolution Céleste',
     service: DracolosseBlue,
     image: Rayquaza2,
+    carouselFolder: 'rayquaza_2',
     description: 'Restauration totale',
     before: 'État: Pliure importante, enfoncements',
   },
@@ -76,12 +101,22 @@ const projects = [
     title: 'Draco V - Évolution Céleste',
     service: DracolosseBlue,
     image: Draco,
+    carouselFolder: 'draco',
     description: 'Restauration totale',
     before: 'État: Pliure importante, enfoncements',
   },
 ]
 
-const images = projects.map((p) => p.image.src)
+// Charger les images de carrousel pour chaque projet
+const projectsWithCarousel = await Promise.all(
+  projects.map(async (project) => ({
+    ...project,
+    carouselImages: await loadCarouselImages(project.carouselFolder),
+  }))
+)
+
+// Créer un tableau des images de carrousel pour chaque projet
+const carouselData = projectsWithCarousel.map((p) => p.carouselImages)
 ---
 
 <div class="py-12">
@@ -92,7 +127,7 @@ const images = projects.map((p) => p.image.src)
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
       {
-        projects.map((project) => (
+        projectsWithCarousel.map((project) => (
           <div
             data-slot="card"
             data-clickable-image
@@ -128,5 +163,5 @@ const images = projects.map((p) => p.image.src)
       }
     </div>
   </div>
-  <ImageCarrousel images={images} client:load />
+  <ImageCarrousel carouselData={carouselData} client:load />
 </div>

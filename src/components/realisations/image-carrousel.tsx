@@ -1,26 +1,31 @@
 import { type Component, createSignal, onMount, Show } from 'solid-js'
 
 interface CarouselProps {
-  images: string[]
+  carouselData: string[][]
 }
 
 const ImageCarousel: Component<CarouselProps> = (props) => {
   const [open, setOpen] = createSignal(false)
-  const [index, setIndex] = createSignal(0)
+  const [projectIndex, setProjectIndex] = createSignal(0)
+  const [imageIndex, setImageIndex] = createSignal(0)
 
   onMount(() => {
     document.querySelectorAll('[data-clickable-image]').forEach((img, i) => {
       img.addEventListener('click', () => {
-        setIndex(i)
+        setProjectIndex(i)
+        setImageIndex(0)
         setOpen(true)
       })
     })
   })
 
-  const next = () => setIndex((i) => (i + 1) % props.images.length)
+  const currentImages = () => props.carouselData[projectIndex()] || []
+
+  const next = () =>
+    setImageIndex((i) => (i + 1) % currentImages().length)
 
   const prev = () =>
-    setIndex((i) => (i - 1 + props.images.length) % props.images.length)
+    setImageIndex((i) => (i - 1 + currentImages().length) % currentImages().length)
 
   const close = () => setOpen(false)
 
@@ -35,7 +40,7 @@ const ImageCarousel: Component<CarouselProps> = (props) => {
           onClick={(e) => e.stopPropagation()}
         >
           <img
-            src={props.images[index()]}
+            src={currentImages()[imageIndex()]}
             class="w-full h-auto rounded-lg shadow-lg"
           />
 
