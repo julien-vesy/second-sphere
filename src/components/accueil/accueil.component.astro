@@ -15,6 +15,9 @@ import tcgDevicesBgPatternSrc from '../../assets/illustrations/accueil/tcg-devic
 import ShinyPokeball from '../../assets/illustrations/accueil/shiny-pokeball.png'
 import Masterball from '../../assets/illustrations/accueil/masterball.png'
 import LoveBall from '../../assets/illustrations/accueil/loveball.png'
+import LpGood from '../../assets/illustrations/accueil/lp_good_icon.png'
+import NoteUp from '../../assets/illustrations/accueil/note_up.png'
+import ClasseurClean from '../../assets/illustrations/accueil/classeur_clean.png'
 import OrderCheck from './order-check.tsx'
 import { Image, getImage } from 'astro:assets'
 import ImageModal from './image-modal.tsx'
@@ -265,29 +268,44 @@ const techniques = [
             </h3>
             <ul class="space-y-3">
               <li class="flex items-start gap-3">
-                <CheckCircle
-                  class="w-5 h-5 text-green-600 mt-1 flex-shrink-0"
-                />
-                <span class="text-gray-700">
-                  Amélioration de l’état global de la carte (LP → GOOD) c’était
-                  l’état de la carte tu peux mettre le logo de cardmarket celui
-                  en rouge et celui en jaune pour illustrer
-                </span>
+                <div class="flex flex-row items-center text-gray-700">
+                  <p class="mr-1">Amélioration de l’état global de la carte</p>
+                  <Image
+                    src={LpGood}
+                    alt=""
+                    fetchpriority="low"
+                    width={64}
+                    quality={90}
+                    format="webp"
+                  />
+                </div>
               </li>
               <li class="flex items-start gap-3">
-                <CheckCircle
-                  class="w-5 h-5 text-green-600 mt-1 flex-shrink-0"
-                />
-                <span class="text-gray-700">
-                  Revalorisation de la carte (note de gradation 7 fleche up)
-                </span>
+                <div class="flex flex-row items-center text-gray-700">
+                  <p class="mr-1">Revalorisation de la carte</p>
+                  <Image
+                    src={NoteUp}
+                    alt=""
+                    fetchpriority="low"
+                    width={48}
+                    class="w-12 h-12"
+                    quality={90}
+                    format="webp"
+                  />
+                </div>
               </li>
               <li class="flex items-start gap-3">
-                <CheckCircle
-                  class="w-5 h-5 text-green-600 mt-1 flex-shrink-0"
-                />
-                <span class="text-gray-700">
-                  Entretien d’une collection (un classeur propre)
+                <span class="flex flex-row items-center text-gray-700">
+                  <p class="mr-1">Entretien d’une collection</p>
+                  <Image
+                    src={ClasseurClean}
+                    alt=""
+                    fetchpriority="low"
+                    width={48}
+                    class="w-12 h-12"
+                    quality={90}
+                    format="webp"
+                  />
                 </span>
               </li>
             </ul>
