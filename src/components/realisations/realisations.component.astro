@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets'
+import { Image, getImage } from 'astro:assets'
 import ImageCarrousel from './image-carrousel.tsx'
 import Flagadoss from '../../assets/illustrations/realisations/flagadoss.jpg'
 import Rayquaza from '../../assets/illustrations/realisations/rayquaza.jpg'
@@ -14,7 +14,6 @@ import MinidracoBlue from '../../assets/illustrations/minidraco_blue.png'
 import DracoBlue from '../../assets/illustrations/draco_blue.png'
 import DracolosseBlue from '../../assets/illustrations/dracoloss_blue.png'
 
-// Fonction pour charger toutes les images d'un dossier de carrousel
 const loadCarouselImages = async (folderName: string) => {
   const images = import.meta.glob(
     '../../assets/illustrations/realisations/carrousel/**/*.{jpg,jpeg,png}'
@@ -24,7 +23,13 @@ const loadCarouselImages = async (folderName: string) => {
   for (const path in images) {
     if (path.includes(`/carrousel/${folderName}/`)) {
       const image = await images[path]()
-      carouselImages.push((image as any).default.src)
+      const optimizedImage = await getImage({
+        src: (image as any).default,
+        format: 'webp',
+        quality: 80,
+        width: 768,
+      })
+      carouselImages.push(optimizedImage.src)
     }
   }
 
@@ -143,7 +148,7 @@ const carouselData = projectsWithCarousel.map((p) => p.carouselImages)
                 class="w-full h-full object-cover"
               />
               <div class="absolute top-4 right-4">
-                <span class="inline-flex items-center justify-center rounded-md px-2 py-0.5">
+                <span class="inline-flex items-center justify-center rounded-full px-2 py-0.5 w-[54px] h-[54px] bg-white">
                   <Image src={project.service} width={54} alt="icone" />
                 </span>
               </div>
