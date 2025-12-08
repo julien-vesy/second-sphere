@@ -29,6 +29,27 @@ const ImageCarousel: Component<CarouselProps> = (props) => {
 
   const close = () => setOpen(false)
 
+  /* 
+   * Preload images sequentially (one by one) to avoid flooding the network 
+   * and letting the browser cache handle the storage.
+   */
+  const preloadImagesSequentially = (urls: string[], index: number) => {
+    if (index >= urls.length) return
+
+    const img = new Image()
+    img.src = urls[index]
+    img.onload = () => preloadImagesSequentially(urls, index + 1)
+    img.onerror = () => preloadImagesSequentially(urls, index + 1)
+  }
+
+  const handleImageLoad = () => {
+    // Start preloading the rest only if we just loaded the first image (index 0)
+    if (imageIndex() === 0) {
+      // Start from index 1 (since 0 is already loaded/displaying)
+      preloadImagesSequentially(currentImages(), 1)
+    }
+  }
+
   return (
     <Show when={open()}>
       <div
@@ -40,8 +61,10 @@ const ImageCarousel: Component<CarouselProps> = (props) => {
           onClick={(e) => e.stopPropagation()}
         >
           <img
+            alt="image"
             src={currentImages()[imageIndex()]}
             class="w-full h-auto rounded-lg shadow-lg"
+            onLoad={handleImageLoad}
           />
 
           <button
