@@ -8,12 +8,14 @@ const ImageCarousel: Component<CarouselProps> = (props) => {
   const [open, setOpen] = createSignal(false)
   const [projectIndex, setProjectIndex] = createSignal(0)
   const [imageIndex, setImageIndex] = createSignal(0)
+  const [loading, setLoading] = createSignal(true)
 
   onMount(() => {
     document.querySelectorAll('[data-clickable-image]').forEach((img, i) => {
       img.addEventListener('click', () => {
         setProjectIndex(i)
         setImageIndex(0)
+        setLoading(true)
         setOpen(true)
       })
     })
@@ -21,19 +23,20 @@ const ImageCarousel: Component<CarouselProps> = (props) => {
 
   const currentImages = () => props.carouselData[projectIndex()] || []
 
-  const next = () => setImageIndex((i) => (i + 1) % currentImages().length)
+  const next = () => {
+    setLoading(true)
+    setImageIndex((i) => (i + 1) % currentImages().length)
+  }
 
-  const prev = () =>
+  const prev = () => {
+    setLoading(true)
     setImageIndex(
       (i) => (i - 1 + currentImages().length) % currentImages().length
     )
+  }
 
   const close = () => setOpen(false)
 
-  /*
-   * Preload images sequentially (one by one) to avoid flooding the network
-   * and letting the browser cache handle the storage.
-   */
   const preloadImagesSequentially = (urls: string[], index: number) => {
     if (index >= urls.length) return
 
@@ -44,9 +47,9 @@ const ImageCarousel: Component<CarouselProps> = (props) => {
   }
 
   const handleImageLoad = () => {
-    // Start preloading the rest only if we just loaded the first image (index 0)
+    setLoading(false)
+
     if (imageIndex() === 0) {
-      // Start from index 1 (since 0 is already loaded/displaying)
       preloadImagesSequentially(currentImages(), 1)
     }
   }
@@ -61,10 +64,17 @@ const ImageCarousel: Component<CarouselProps> = (props) => {
           class="relative max-w-3xl w-full max-h-full"
           onClick={(e) => e.stopPropagation()}
         >
+          <Show when={loading()}>
+            <div class="absolute inset-0 flex items-center justify-center bg-black/20 rounded-lg">
+              <div class="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+            </div>
+          </Show>
+
           <img
             alt="image"
             src={currentImages()[imageIndex()]}
             class="w-full h-auto rounded-lg shadow-lg"
+            classList={{ 'opacity-0': loading() }}
             onLoad={handleImageLoad}
           />
 
@@ -72,6 +82,7 @@ const ImageCarousel: Component<CarouselProps> = (props) => {
             class="w-[48px] absolute top-1/2 left-4 -translate-y-1/2 bg-white/80 px-3 py-3 rounded-full hover:bg-white transition-colors"
             onClick={prev}
             aria-label="Image précédente"
+            disabled={loading()}
           >
             ‹
           </button>
@@ -80,6 +91,7 @@ const ImageCarousel: Component<CarouselProps> = (props) => {
             class="w-[48px] absolute top-1/2 right-4 -translate-y-1/2 bg-white/80 px-3 py-3 rounded-full hover:bg-white transition-colors"
             onClick={next}
             aria-label="Image suivante"
+            disabled={loading()}
           >
             ›
           </button>
