@@ -1,19 +1,51 @@
-import { type Component, createSignal, onMount, Show } from 'solid-js'
+import {
+  type Component,
+  createSignal,
+  onCleanup,
+  onMount,
+  Show,
+} from 'solid-js'
 
 const ImageModal: Component = () => {
   const [open, setOpen] = createSignal(false)
   const [src, setSrc] = createSignal('')
 
   onMount(() => {
-    document
-      .querySelectorAll<HTMLImageElement>('[data-clickable-image]')
-      .forEach((img) => {
-        img.addEventListener('click', () => {
-          // Récupère le src de l'image elle-même, pas du data-attribute
-          setSrc(img.src)
-          setOpen(true)
-        })
-      })
+    const handleCardClick = (e: Event) => {
+      const card = e.currentTarget as HTMLElement
+      const img = card.querySelector<HTMLImageElement>('[data-full-image-src]')
+      if (img && img.dataset.fullImageSrc) {
+        setSrc(img.dataset.fullImageSrc)
+        setOpen(true)
+      }
+    }
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        close()
+      }
+    }
+
+    // Ajouter les event listeners sur les cards
+    const cards = document.querySelectorAll<HTMLElement>(
+      '[data-slot="card-content"]'
+    )
+    cards.forEach((card) => {
+      // Ajouter un style cursor-pointer pour indiquer que c'est cliquable
+      card.style.cursor = 'pointer'
+      card.addEventListener('click', handleCardClick)
+    })
+
+    // Écouter la touche Échap
+    document.addEventListener('keydown', handleEscape)
+
+    // Cleanup
+    onCleanup(() => {
+      cards.forEach((card) =>
+        card.removeEventListener('click', handleCardClick)
+      )
+      document.removeEventListener('keydown', handleEscape)
+    })
   })
 
   const close = () => setOpen(false)
@@ -23,11 +55,14 @@ const ImageModal: Component = () => {
       <div
         class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50 cursor-pointer"
         onClick={close}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Aperçu de l'image"
       >
         <img
           src={src()}
           alt="Aperçu image"
-          class="max-w-3xl max-h-[90vh] rounded-lg shadow-lg cursor-default"
+          class="max-w-[90vw] max-h-[90vh] w-auto h-auto rounded-lg shadow-lg cursor-default"
         />
       </div>
     </Show>

@@ -68,29 +68,47 @@ const values = [
   },
 ]
 
-const techniques = [
+const techniquesImages = [
   {
-    icon: RaichuNettoyage,
+    src: RaichuNettoyage,
     title: 'Nettoyage minutieux',
     description:
       'Élimination délicate des impuretés sans altérer la surface de la carte',
   },
   {
-    icon: RaichuCorrection,
+    src: RaichuCorrection,
     title: 'Correction des endommagements',
     description: 'Correction des enfoncements et des pliures',
   },
   {
-    icon: RaichuRetouche,
+    src: RaichuRetouche,
     title: 'Retouche des détails',
     description: 'Restauration minutieuse de la partie holographique',
   },
   {
-    icon: RaichuFinition,
+    src: RaichuFinition,
     title: 'Finition',
     description: 'Techniques de pressage professionnel',
   },
 ]
+
+const techniques = await Promise.all(
+  techniquesImages.map(async (technique) => ({
+    ...technique,
+    icon: await getImage({
+      src: technique.src,
+      format: 'webp',
+      quality: 80,
+      width: 210,
+    }),
+    image: await getImage({
+      src: technique.src,
+      format: 'webp',
+      quality: 80,
+      width: 630,
+    }),
+  }))
+)
 ---
 
 <style define:vars={{ patternUrl: `url(${tcgDevicesBgPattern.src})` }}>
@@ -395,13 +413,12 @@ const techniques = [
                 <div data-slot="card-content" class="pt-6">
                   <div class="flex justify-center mb-4">
                     <div>
-                      <Image
+                      <img
                         fetchpriority="low"
                         data-clickable-image
-                        src={technique.icon}
+                        data-full-image-src={technique.image.src}
+                        src={technique.icon.src}
                         alt={technique.description}
-                        quality={80}
-                        width={630}
                         class="cursor-pointer  rounded-lg  lg:w-[210px] lg:h-[280px] md:w-[315px] md:h-[420px]"
                       />
                     </div>
