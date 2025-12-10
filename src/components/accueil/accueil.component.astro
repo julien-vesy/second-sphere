@@ -189,10 +189,10 @@ const techniques = await Promise.all(
       <div class="text-center">
         <div class="inline-block">
           <Image
-            loading="lazy"
             id="FixMyCard"
             src={FixMyCard}
             alt="FixMyCard"
+            loading="eager"
             fetchpriority="high"
             quality={80}
             width={320}
@@ -203,20 +203,20 @@ const techniques = await Promise.all(
         </div>
         <div class="w-full flex justify-center align-middle">
           <Image
-            loading="lazy"
             id="fix"
             src={Fix}
             alt="Fix"
+            loading="eager"
             fetchpriority="high"
             quality={80}
             width={120}
             format="webp"
           />
           <Image
-            loading="lazy"
             id="my"
             src={My}
             alt="My"
+            loading="eager"
             fetchpriority="high"
             quality={80}
             width={120}
@@ -225,10 +225,10 @@ const techniques = await Promise.all(
         </div>
         <div class="w-full flex justify-center align-middle">
           <Image
-            loading="lazy"
             id="card"
             src={Card}
             alt="card"
+            loading="eager"
             fetchpriority="high"
             quality={80}
             width={200}
@@ -423,7 +423,7 @@ const techniques = await Promise.all(
                         data-full-image-src={technique.image.src}
                         src={technique.icon.src}
                         alt={technique.description}
-                        class="cursor-pointer  rounded-lg  lg:w-[210px]
+                        class="cursor-pointer rounded-lg lg:w-[210px]
                         lg:h-[280px] md:w-[315px] md:h-[420px]"
                       />
                     </div>
