@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "npx netlify dev",
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
@@ -21,6 +21,7 @@
     "tailwindcss": "^3.4.18"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.6",
     "@netlify/functions": "^5.1.0",
     "@types/busboy": "^1.5.4",
     "@types/mime-types": "^3.0.1",
@@ -30,9 +31,10 @@
     "lint-staged": "^16.2.7",
     "netlify-cli": "^23.12.2",
     "prettier": "^3.7.3",
-    "prettier-plugin-astro": "^0.14.1"
+    "prettier-plugin-astro": "^0.14.1",
+    "typescript": "^5.9.3"
   },
   "lint-staged": {
-    "*.{js,css,md,jsx,astro}": "prettier --write"
+    "*.{ts,css,md,tsx,astro}": "prettier --write"
   }
 }

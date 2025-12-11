@@ -1,5 +1,4 @@
 ---
-import CheckCircle from '../../assets/icons/circle-check.svg'
 import Sparkles from '../../assets/icons/sparkles.svg'
 import RaichuCorrection from '../../assets/illustrations/accueil/raichu-correction.jpg'
 import RaichuFinition from '../../assets/illustrations/accueil/raichu-finition.jpg'
@@ -69,29 +68,65 @@ const values = [
   },
 ]
 
-const techniques = [
+const techniquesImages = [
   {
-    icon: RaichuNettoyage,
+    src: RaichuNettoyage,
     title: 'Nettoyage minutieux',
     description:
       'Élimination délicate des impuretés sans altérer la surface de la carte',
   },
   {
-    icon: RaichuCorrection,
+    src: RaichuCorrection,
     title: 'Correction des endommagements',
     description: 'Correction des enfoncements et des pliures',
   },
   {
-    icon: RaichuRetouche,
+    src: RaichuRetouche,
     title: 'Retouche des détails',
     description: 'Restauration minutieuse de la partie holographique',
   },
   {
-    icon: RaichuFinition,
+    src: RaichuFinition,
     title: 'Finition',
     description: 'Techniques de pressage professionnel',
   },
 ]
+
+const cards = [
+  {
+    title: 'Amélioration de l’état global de la carte',
+    img: LpGood,
+    width: 64,
+  },
+  {
+    title: 'Revalorisation de la carte',
+    img: NoteUp,
+    width: 48,
+  },
+  {
+    title: 'Entretien d’une collection',
+    img: ClasseurClean,
+    width: 64,
+  },
+]
+
+const techniques = await Promise.all(
+  techniquesImages.map(async (technique) => ({
+    ...technique,
+    icon: await getImage({
+      src: technique.src,
+      format: 'webp',
+      quality: 80,
+      width: 210,
+    }),
+    image: await getImage({
+      src: technique.src,
+      format: 'webp',
+      quality: 80,
+      width: 630,
+    }),
+  }))
+)
 ---
 
 <style define:vars={{ patternUrl: `url(${tcgDevicesBgPattern.src})` }}>
@@ -122,8 +157,8 @@ const techniques = [
 <div class="overflow-hidden">
   <section
     style={`background-image: url(${pokePattern.src}); background-size: 300px;`}
-    class="min-h-[calc(100vh-64px)] grid grid-cols-1 lg:grid-cols-2 justify-center items-center
-    overflow-hidden"
+    class="min-h-[calc(100vh-64px)] grid grid-cols-1 lg:grid-cols-2
+    justify-center items-center overflow-hidden"
   >
     <div class="flex justify-center items-center md:mx-5">
       <div
@@ -141,7 +176,7 @@ const techniques = [
           de vos jeux.
         </p>
         <div class="w-[210px] h-[40px] flex justify-center lg:justify-start">
-          <OrderCheck client:load />
+          <OrderCheck client:visible />
         </div>
       </div>
     </div>
@@ -157,6 +192,7 @@ const techniques = [
             id="FixMyCard"
             src={FixMyCard}
             alt="FixMyCard"
+            loading="eager"
             fetchpriority="high"
             quality={80}
             width={320}
@@ -170,6 +206,7 @@ const techniques = [
             id="fix"
             src={Fix}
             alt="Fix"
+            loading="eager"
             fetchpriority="high"
             quality={80}
             width={120}
@@ -179,6 +216,7 @@ const techniques = [
             id="my"
             src={My}
             alt="My"
+            loading="eager"
             fetchpriority="high"
             quality={80}
             width={120}
@@ -190,6 +228,7 @@ const techniques = [
             id="card"
             src={Card}
             alt="card"
+            loading="eager"
             fetchpriority="high"
             quality={80}
             width={200}
@@ -267,47 +306,25 @@ const techniques = [
               Intérêt de la restauration
             </h3>
             <ul class="space-y-3">
-              <li class="flex items-start gap-3">
-                <div class="flex flex-row items-center text-gray-700">
-                  <p class="mr-1">Amélioration de l’état global de la carte</p>
-                  <Image
-                    src={LpGood}
-                    alt=""
-                    fetchpriority="low"
-                    width={64}
-                    quality={90}
-                    format="webp"
-                  />
-                </div>
-              </li>
-              <li class="flex items-start gap-3">
-                <div class="flex flex-row items-center text-gray-700">
-                  <p class="mr-1">Revalorisation de la carte</p>
-                  <Image
-                    src={NoteUp}
-                    alt=""
-                    fetchpriority="low"
-                    width={48}
-                    class="w-12 h-12"
-                    quality={90}
-                    format="webp"
-                  />
-                </div>
-              </li>
-              <li class="flex items-start gap-3">
-                <span class="flex flex-row items-center text-gray-700">
-                  <p class="mr-1">Entretien d’une collection</p>
-                  <Image
-                    src={ClasseurClean}
-                    alt=""
-                    fetchpriority="low"
-                    width={48}
-                    class="w-12 h-12"
-                    quality={90}
-                    format="webp"
-                  />
-                </span>
-              </li>
+              {
+                cards.map((card) => (
+                  <li class="flex items-center gap-3 h-[48px]">
+                    <div class="flex flex-row items-center text-gray-700">
+                      <div class="w-20 flex items-center justify-center">
+                        <Image
+                          loading="lazy"
+                          src={card.img}
+                          alt=""
+                          width={card.width}
+                          quality={80}
+                          format="webp"
+                        />
+                      </div>
+                      <p class="mr-1">{card.title}</p>
+                    </div>
+                  </li>
+                ))
+              }
             </ul>
           </div>
         </div>
@@ -316,7 +333,8 @@ const techniques = [
   </section>
 
   <section
-    style={`background-image: url(${tcgDevicesBgOptimized.src});background-position: 50%;
+    style={`background-image: url(${tcgDevicesBgOptimized.src});
+    background-position: 50%;
     background-repeat: no-repeat;
     background-size: cover;`}
     class="tcg-devices-section relative py-24 bg-gradient-to-br from-slate-900
@@ -342,12 +360,13 @@ const techniques = [
               >
                 <div data-slot="card-content" class="pt-8 text-center">
                   <div
-                    class={`inline-flex py-6 px-3 rounded-lg bg-gradient-to-br ${value.color} mb-6`}
+                    class={`inline-flex py-6 px-3 rounded-lg
+                    bg-gradient-to-br ${value.color} mb-6`}
                   >
                     <Image
+                      loading="lazy"
                       src={value.icon}
                       alt={value.title}
-                      fetchpriority="low"
                       width={48}
                       class="w-12 h-12"
                       quality={90}
@@ -370,7 +389,8 @@ const techniques = [
   </section>
 
   <section
-    class="relative py-24 bg-gradient-to-br from-purple-50 to-blue-50 overflow-hidden"
+    class="relative py-24 bg-gradient-to-br from-purple-50 to-blue-50
+    overflow-hidden"
   >
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       <div class="text-center mb-16">
@@ -391,24 +411,28 @@ const techniques = [
             <div class="relative">
               <div
                 data-slot="card"
-                class="h-full hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                class="h-full hover:shadow-xl transition-all duration-300
+                hover:-translate-y-1"
               >
                 <div data-slot="card-content" class="pt-6">
                   <div class="flex justify-center mb-4">
                     <div>
-                      <Image
-                        fetchpriority="low"
+                      <img
+                        loading="lazy"
                         data-clickable-image
-                        src={technique.icon}
+                        data-full-image-src={technique.image.src}
+                        src={technique.icon.src}
                         alt={technique.description}
-                        quality={80}
-                        width={630}
-                        class="cursor-pointer  rounded-lg  lg:w-[210px] lg:h-[280px] md:w-[315px] md:h-[420px]"
+                        class="cursor-pointer rounded-lg lg:w-[210px]
+                        lg:h-[280px] md:w-[315px] md:h-[420px]"
                       />
                     </div>
                   </div>
                   <h3 class="text-xl mb-3 text-center">{technique.title}</h3>
-                  <p class="text-gray-600 m-2 text-center text-sm leading-relaxed">
+                  <p
+                    class="text-gray-600 m-2 text-center text-sm
+                    leading-relaxed"
+                  >
                     {technique.description}
                   </p>
                 </div>
@@ -515,5 +539,5 @@ const techniques = [
       </div>
     </div>
   </section>
-  <ImageModal client:load />
+  <ImageModal client:idle />
 </div>
