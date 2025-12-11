@@ -76,8 +76,7 @@ const processes = [
 
 <div class="py-12">
   <div
-    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col
-    md:items-stretch items-center"
+    class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:items-stretch items-center"
   >
     <div class="text-center mb-12">
       <h1 class="text-5xl mb-4 text-gray-900">Mes prestations</h1>
@@ -87,34 +86,30 @@ const processes = [
       </p>
     </div>
 
-    <div
-      class="grid gap-8 mb-12 [grid-template-columns:repeat(auto-fit,minmax(350px,1fr))]"
-    >
+    <div class="grid gap-8 mb-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
       {
-        services.map((service) => (
-          <div
-            data-slot="card"
-            class="bg-card text-card-foreground flex flex-col gap-6 rounded-xl
-            border transition-shadow"
-          >
-            <div class="flex flex-col gap-1.5 h-[160px] md:h-[140px] px-6 pt-6 ">
+        services.map((service, index) => (
+          <div class="bg-card text-card-foreground flex flex-col rounded-xl border transition-shadow hover:shadow-xl">
+            <div class="flex flex-col gap-1.5 h-[160px] px-6 pt-6">
               <div class="mb-4">
                 <Image
                   src={service.icon}
                   quality={80}
-                  alt="test"
+                  alt={service.title}
                   width={40}
                   height={40}
                   format="webp"
-                  class="w-10 h-10 "
+                  loading={index === 0 ? 'eager' : 'lazy'}
+                  fetchpriority={index === 0 ? 'high' : undefined}
+                  class="w-10 h-10"
                 />
               </div>
-              <h4 class="leading-none">{service.title}</h4>
-              <p class="text-gray-500 text-muted-foreground">
-                {service.description}
-              </p>
+              <h4 class="text-lg font-semibold leading-none">
+                {service.title}
+              </h4>
+              <p class="text-sm text-gray-500">{service.description}</p>
             </div>
-            <div data-slot="card-content" class="px-6 [&:last-child]:pb-6">
+            <div class="px-6 pb-6">
               <div class="mb-4">
                 <span class="text-2xl font-medium text-blue-600">
                   {service.price}
@@ -122,9 +117,9 @@ const processes = [
               </div>
               <ul class="space-y-2">
                 {service.features.map((feature) => (
-                  <li class="flex items-start">
-                    <CircleCheck class="w-5 h-5 text-green-500 mr-2 flex-shrink-0 mt-0.5" />
-                    <span class="text-gray-700">{feature}</span>
+                  <li class="flex items-start gap-2">
+                    <CircleCheck class="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                    <span class="text-sm text-gray-700">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -133,7 +128,8 @@ const processes = [
         ))
       }
     </div>
-    <div class="text-sm mb-4">
+
+    <div class="text-sm mb-8 text-gray-600">
       <i>
         *Remise en main propre possible sur la zone de Montpellier. Les prix
         indiqués correspondent au prix HT de la prestation ajouté au prix de la
@@ -141,26 +137,28 @@ const processes = [
         Fix My Card recommande d’ajouter une assurance à votre colis. Les tarifs
         restent indicatifs et soumis à l’évaluation d’un devis.
       </i>
-      <a class="underline" href="/">Voir cgv.</a>
+      <a
+        class="underline text-blue-600 hover:text-blue-700 transition-colors"
+        href="/"
+      >
+        Voir cgv.
+      </a>
     </div>
     <div
       class="bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg p-8 mb-12 text-white"
     >
-      <h2 class="text-3xl mb-8 text-center text-white">
+      <h2 class="text-3xl font-bold mb-8 text-center">
         Le processus de commande
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
         {
           processes.map((process) => (
             <div class="text-center">
-              <div
-                class="bg-white  text-black w-12 h-12 rounded-full flex
-              items-center justify-center mx-auto mb-4 text-xl"
-              >
+              <div class="bg-white text-black w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-semibold">
                 {process.index}
               </div>
-              <h3 class="text-xl mb-2">{process.title}</h3>
-              <p class="text-gray-300">{process.subtitle}</p>
+              <h3 class="text-xl font-semibold mb-2">{process.title}</h3>
+              <p class="text-sm text-purple-100">{process.subtitle}</p>
             </div>
           ))
         }
@@ -168,24 +166,15 @@ const processes = [
     </div>
 
     <div class="text-center">
-      <h2 class="text-3xl mb-4 text-gray-900">Intéressé par mes services ?</h2>
+      <h2 class="text-3xl font-bold mb-4 text-gray-900">
+        Intéressé par mes services ?
+      </h2>
       <p class="text-xl text-gray-600 mb-6">
         Demandez un devis gratuit et personnalisé dès maintenant
       </p>
       <a
         href="/devis"
-        class="inline-flex items-center justify-center gap-2
-            whitespace-nowrap text-sm font-medium transition-all
-            disabled:pointer-events-none disabled:opacity-50
-            [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4
-            shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring
-            focus-visible:ring-ring/50 focus-visible:ring-[3px]
-            aria-invalid:ring-destructive/20
-            dark:aria-invalid:ring-destructive/40
-            aria-invalid:border-destructive bg-background
-            hover:text-accent-foreground dark:bg-input/30 dark:border-input
-            dark:hover:bg-input/50 h-10 rounded-md px-6 has-[>svg]:px-4
-            border-2 border-purple-600 text-purple-600 hover:bg-purple-50"
+        class="inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all outline-none focus-visible:ring-2 focus-visible:ring-purple-600/50 h-10 rounded-md px-6 border-2 border-purple-600 text-purple-600 hover:bg-purple-50 active:scale-95"
       >
         Demander un devis gratuit
       </a>
