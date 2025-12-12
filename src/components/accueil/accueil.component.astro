@@ -172,8 +172,7 @@ const techniques = await Promise.all(
           à vos cartes
         </h1>
         <p class="text-xl text-center lg:text-left mb-2 p-5 lg:p-0">
-          Restauration experte pour retrouver l’éclat, la précision et la valeur
-          de vos jeux.
+          Restauration professionnelle de vos cartes : de l'usure à la splendeur
         </p>
         <div class="w-[210px] h-[40px] flex justify-center lg:justify-start">
           <OrderCheck client:visible />
@@ -209,7 +208,7 @@ const techniques = await Promise.all(
             loading="eager"
             fetchpriority="high"
             quality={80}
-            width={120}
+            width={147}
             format="webp"
           />
           <Image
@@ -310,7 +309,7 @@ const techniques = await Promise.all(
                 cards.map((card) => (
                   <li class="flex items-center gap-3 h-[48px]">
                     <div class="flex flex-row items-center text-gray-700">
-                      <div class="w-20 flex items-center justify-center">
+                      <div class="min-w-20 flex items-center justify-center">
                         <Image
                           loading="lazy"
                           src={card.img}
@@ -320,7 +319,7 @@ const techniques = await Promise.all(
                           format="webp"
                         />
                       </div>
-                      <p class="mr-1">{card.title}</p>
+                      <p>{card.title}</p>
                     </div>
                   </li>
                 ))
@@ -358,7 +357,7 @@ const techniques = await Promise.all(
                 transition-all duration-300 h-full shadow-xl
                 rounded-xl"
               >
-                <div data-slot="card-content" class="pt-8 text-center">
+                <div class="pt-8 text-center">
                   <div
                     class={`inline-flex py-6 px-3 rounded-lg
                     bg-gradient-to-br ${value.color} mb-6`}
@@ -468,7 +467,7 @@ const techniques = await Promise.all(
         </h2>
         <div class="prose prose-lg mx-auto text-gray-700 space-y-6">
           <p class="text-xl italic leading-relaxed">
-            "Chaque carte qui nous est confiée a vécu. Elle a été échangée dans
+            "Chaque carte qui nous est confiée a vécue. Elle a été échangée dans
             une cour d'école, rangée précieusement dans un classeur, ou
             redécouverte des années plus tard."
           </p>

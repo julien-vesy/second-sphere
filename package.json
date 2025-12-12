@@ -8,7 +8,7 @@
     "preview": "astro preview",
     "astro": "astro",
     "prepare": "husky",
-    "prod": "npm run build && netlify dev --dir=dist"
+    "prod": "npm run build && netlify dev --dir=dist --context production"
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
